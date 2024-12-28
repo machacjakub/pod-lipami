@@ -1,0 +1,43 @@
+---
+import ServiceLeft from "./ServiceLeft.astro";
+import {services} from './services'
+import ServiceRight from "./ServiceRight.astro";
+---
+<section id="services">
+    <div id="heading-background">
+        <h2>Naše služby</h2>
+    </div>
+    <div id="services-list">
+    {services.map((service, i) =>  {
+        if(i%2 === 1) {
+            return <ServiceRight image={service.image} title={service.title} text={service.text} />
+        }
+        return <ServiceLeft image={service.image} title={service.title} text={service.text} />
+        })
+    }
+    </div>
+</section>
+<style>
+    #services {
+        height: 600px;
+        width: 100vw;
+    }
+    h2 {
+        text-align: center;
+        font-size: 28px;
+        color: var(--green-dark);
+    }
+    #heading-background{
+        width: 100%;
+        padding: 80px 0 120px;
+        background-color: var(--background-light-blue);
+        box-shadow: inset white -80px 0 50px 50px;
+    }
+    #services-list {
+        position: relative;
+        bottom: 72px;
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+    }
+</style>

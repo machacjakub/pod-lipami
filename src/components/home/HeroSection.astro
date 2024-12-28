@@ -1,0 +1,68 @@
+---
+---
+<section id="hero-wrapper">
+    <div id="hero">
+        <div id="blurred-line"/>
+        <div>
+            <h1>Fyzioterapie a kraniosakrální terapie</h1>
+            <h4>Mladá Boleslav</h4>
+            <button>Rezervovat termín</button>
+        </div>
+        <img id="hero-image" alt="Hero image" src="../../../public/hero-img.png" />
+    </div>
+</section>
+<style>
+    h1 {
+        color: var(--green-dark);
+        font-size: 48px;
+        margin-bottom: 16px;
+    }
+    h4 {
+        color: var(--green-light);
+        font-size: 28px;
+        font-weight: normal;
+        margin: 16px auto 32px auto;
+    }
+    button {
+        background-color: var(--salmon-light);
+        padding: 15px 24px;
+        font-family: Sofia Sans, sans-serif;
+        border: none;
+        border-radius: 18px;
+        font-size: 22px;
+        font-weight: 600;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
+    }
+    #hero-wrapper {
+        height: 90vh;
+        display: flex;
+        align-items: center;
+    }
+    #hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 50px;
+        margin: 60px 0 30px 0;
+        background-image: linear-gradient(white, var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), white);
+        padding: 30px 0 30px 50px;
+    }
+    #hero-image {
+        height: 400px;
+        border-radius: 20px 0 0 20px ;
+        border: var(--green-light ) solid;
+        border-width: 10px 0 10px 10px;
+    }
+    #blurred-line {
+        width: 20px;
+        height: 420px;
+        margin-right: 40px;
+        background-color: var(--green-light);
+        filter: blur(5px);
+    }
+    #services {
+        height: 600px;
+        background-color: darkgreen;
+        width: 100vw;
+    }
+</style>
