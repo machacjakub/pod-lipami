@@ -21,7 +21,7 @@ const links = [
 	<body>
 		<nav>
 			<div id="navigation">
-				<a href="/"><img alt="logo"  id="logo" height="54" src="/logo-transparent.png"/></a>
+				<a href="/"><img alt="logo" id="logo" height="54" src="/logo-transparent.png"/></a>
 				<div class="nav-links">{links.map(link => <a class="link" href={link.path}>{link.label}</a>)}</div>
 				<div id="menu"><DropdownMenuButton client:only="react" items={links}/></div>
 			</div>
@@ -90,14 +90,15 @@ const links = [
 	}
 
 	@media (max-width: 800px) {
-		a.link {
-			display: none;
-		}
 		#menu {
 			display: initial;
 		}
 		#navigation {
 			padding: 6px;
+			gap: 0;
+		}
+		.nav-links {
+			display: none;
 		}
 	}
 </style>

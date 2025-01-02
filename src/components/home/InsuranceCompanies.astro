@@ -3,7 +3,7 @@
 <div id="insurance-companies">
     <h2>Spolupracujeme:</h2>
     <div class="flex">
-        <img src="/pojistovny/zps.png" height="100px" alt="logo-pojistovny"/>
+        <img src="/pojistovny/zps.png" height="100vw" alt="logo-pojistovny"/>
         <img src="/pojistovny/zpmv.png" height="84px" alt="logo-pojistovny"/>
         <img src="/pojistovny/vzp.png" height="70px" alt="logo-pojistovny"/>
         <img src="/pojistovny/vozp.png" height="72px" alt="logo-pojistovny"/>
@@ -28,4 +28,19 @@
         width: 90%;
         margin: 40px auto 100px;
     }
+    @media (max-width: 600px) {
+        img {
+            height: calc(36px + 6vw);
+        }
+        h2 {
+            color: var(--green-dark);
+            text-align: center;
+            letter-spacing: 0.5px;
+            font-size: 20px;
+        }
+        .flex {
+            gap: calc(8px + 10vw);
+        }
+    }
+
 </style>

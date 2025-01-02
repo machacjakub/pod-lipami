@@ -46,7 +46,7 @@
     }
     #hero {
         display: flex;
-        width: 100vw;
+        width: calc(100vw - 50px);
         justify-content: space-between;
         align-items: center;
         gap: 50px;
@@ -89,10 +89,6 @@
             align-items: initial;
             height: fit-content;
         }
-        #hero {
-            padding-right: 100px;
-            justify-content: left;
-        }
         #hero-image-desktop {
             display: none;
         }
@@ -117,13 +113,28 @@
         }
         #hero {
             gap: 20px;
-            padding: 30px 5% 30px 5%;
+            padding: 30px 10% 30px 5%;
+            justify-content: left;
+            width: calc(100vw - 15%);
         }
         #blurred-line {
             width: calc(10px + 1%);
             height: 360px;
             margin-right: 10%;
             flex-shrink: 0;
+        }
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 30px;
+            }
+            h4 {
+                font-size: 18px;
+            }
+            button {
+                padding: 10px 16px;
+                font-size: 18px;
+                border-radius: 10px;
+            }
         }
     }
 </style>
