@@ -6,7 +6,7 @@
         <div>
             <h1>Fyzioterapie a kraniosakrální terapie</h1>
             <h4>Mladá Boleslav</h4>
-            <a href="#kontakt"><button client:only id="reservation-button">Rezervovat termín</button></a>
+            <a href="#kontakt"><button client:only="react" id="reservation-button">Rezervovat termín</button></a>
         </div>
         <img id="hero-image-desktop" alt="Hero image" src="/hero-img.png" />
     </div>
@@ -36,6 +36,9 @@
         cursor: pointer;
         color: var(--salmon-darker);
     }
+    button:hover {
+        box-shadow: 0 0 10px white;
+    }
     #hero-wrapper {
         height: 90vh;
         display: flex;
@@ -43,6 +46,7 @@
     }
     #hero {
         display: flex;
+        width: 100vw;
         justify-content: space-between;
         align-items: center;
         gap: 50px;
