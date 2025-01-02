@@ -21,7 +21,7 @@ const links = [
 	<body>
 		<nav>
 			<div id="navigation">
-				<a alt="logo" href="/"><img id="logo" height="60" src="/logo-transparent.png"/></a>
+				<a alt="logo" href="/"><img id="logo" height="54" src="/logo-transparent.png"/></a>
 				{links.map(link => <a class="link" href={link.path}>{link.label}</a>)}
 				<div id="menu"><DropdownMenuButton client:only="react" items={links}/></div>
 			</div>
@@ -74,7 +74,7 @@ const links = [
 	}
 
 	#logo {
-		padding: 8px;
+		padding: 6px;
 		cursor: pointer;
 	}
 
