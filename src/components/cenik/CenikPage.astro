@@ -1,0 +1,106 @@
+---
+---
+<div class="flex">
+    <div class="wrapper">
+        <h2>Informace pro pacienty</h2>
+        <p>
+            Pro objednání je nutná žádanka vyplněná a potvrzená doporučujícím praktickým nebo odborným lékařem. Od jejího vystavení by se měl pacient do 1 týdne přihlásit na fyzioterapeutickém pracovišti. Jeho výběr je svobodná volba pacienta, lékař může pouze doporučit některé z pracovišť.
+        </p>
+        <p class="samoplatce"><b>Pro samoplátce</b> není nutná žádanka, terapii si hradi klient sám, viz ceník.</p>
+        <h2 id="cenik-pro-samoplatce">Ceník pro samoplátce</h2>
+        <div class="flex-column">
+        <table>
+            <tr>
+                <td>Komplexní individuální terapie</td>
+                <td class="price">1 100 Kč</td>
+            </tr>
+            <tr>
+                <td>Terapie s prvky senzorické integrace</td>
+                <td class="price">1 000 Kč</td>
+            </tr>
+            <tr>
+                <td>Kraniosakrální terapie</td>
+                <td class="price">1 100 Kč</td>
+            </tr>
+            <tr>
+                <td>Masáž zad a šije 50min</td>
+                <td class="price">1 000 Kč</td>
+            </tr>
+        </table>
+        <a href="/#kontakt"><button client:only="react" id="reservation-button">Rezervovat termín</button></a>
+        </div>
+    </div>
+</div>
+<style>
+    h2 {
+        text-align: center;
+        font-size: 28px;
+        color: var(--green-dark);
+    }
+    table {
+        margin: 0 auto;
+        font-size: 18px;
+        border-collapse: collapse;
+        background-color: var(--green-lighter);
+    }
+    td {
+        border: solid white;
+        border-width: 3px 0 3px 0;
+        padding: 10px 30px 10px 10px;
+    }
+    td.price {
+        text-align: right;
+        border-width: 3px 0 3px 3px;
+        width: 200px;
+        padding-right: 10px;
+    }
+    .flex {
+        display: flex;
+        margin: 100px;
+        padding: 50px 100px 100px;
+        background-image: linear-gradient(white, var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), white);
+        justify-content: center;
+    }
+    .wrapper {
+        width: min(1000px, 60vw);
+        padding: 10px 8vw 40px;
+        border-radius: 40px;
+    }
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+    p {
+        font-size: 18px;
+    }
+    .samoplatce {
+        font-size: 20px;
+    }
+    #blurred-line {
+        width: 20px;
+        margin-right: 40px;
+        background-color: var(--green-light);
+        filter: blur(5px);
+        flex-shrink: 0;
+    }
+    #cenik-pro-samoplatce {
+        margin-top: 50px;
+    }
+    button {
+        background-color: var(--salmon-light);
+        padding: 12px 20px;
+        font-family: Sofia Sans, sans-serif;
+        border: none;
+        border-radius: 18px;
+        font-size: 20px;
+        font-weight: 600;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.34);
+        cursor: pointer;
+        color: var(--salmon-darker);
+    }
+    button:hover {
+        box-shadow: 0 0 10px white;
+    }
+</style>

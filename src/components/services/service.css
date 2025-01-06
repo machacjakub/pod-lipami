@@ -1,0 +1,24 @@
+.wrapper {
+    margin: 100px;
+}
+
+.background-head {
+    height: 100px;
+    background-image: linear-gradient(white, var(--background-light-blue));
+}
+
+.content {
+    padding: 20px 100px 100px;
+    background-color: var(--background-light-blue);
+}
+
+
+.background-footer {
+    height: 100px;
+    background-image: linear-gradient( var(--background-light-blue), white);
+}
+
+h1 {
+    text-align: center;
+    color: var(--salmon-dark);
+}

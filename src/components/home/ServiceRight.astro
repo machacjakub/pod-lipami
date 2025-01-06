@@ -1,12 +1,12 @@
 ---
-const { title, text, image } = Astro.props;
+const { title, text, image, path } = Astro.props;
 ---
 <div id="flex">
     <img src={image} alt="service-ilustration" class="img-phone">
     <div id="information">
         <h3>{title}</h3>
         <p>{text}</p>
-        <button>Více</button>
+        <a href={`/sluzby/${path}`}><button>Více</button></a>
     </div>
     <img src={image} alt="service-ilustration" class="img-desktop">
     <div id="background"/>

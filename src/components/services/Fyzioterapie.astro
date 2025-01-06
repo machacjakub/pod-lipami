@@ -1,0 +1,59 @@
+---
+import './service.css'
+import { Accordion } from "./Accordion";
+---
+<div class="wrapper">
+    <div class="background-head"/>
+    <div class="content">
+    <h1>Fyzioterapie</h1>
+    <p>
+        V našem centru vybíráme postup léčby ze široké škály metodik a terapeutických protředků individuálně podle potřeby každého klienta. Našim hlavním cílem je obnovení a normalizace pohybů tak, aby nedocházelo k přetížení a bolestem pohybového systému.Základem terapie je správná diagnostika, která se opírá o anamnézu (pohovor s pacientem o průběhu a charakteru jeho obtíží)
+    </p>
+    <Accordion title="Indikace" client:only="react">
+        <ul>
+            <li>Akutní i chronické bolesti zad (krční, hrudní i bederní páteře)</li>
+            <li>Bolesti zad po operaci páteře</li>
+            <li>Bolesti hlavy</li>
+            <li>Tinitus (hučení v uších), kinetóza (motání hlavy), závratě</li>
+            <li>Blokády kloubů a žeber</li>
+            <li>Poúrazové stavy (poranění svalů, kloubů, vazů a šlach)</li>
+            <li>Pooperační stavy (zlomeniny kostí, výrony a luxace kloubů, operace menisků, vazů, výhřezy ploténky)</li>
+            <li>Bolesti ramen (impingement syndrom, syndrom rotatorové manžety, zamrznuté rameno, artróza ramene)</li>
+            <li>Bolesti kyčelních kloubů (koxartróza, bolesti v tříslech, femoroacetabulární impingement syndrom)</li>
+            <li>Stavy po výměně kloubů (totální endoprotéza kolene, kyčle i ramene)</li>
+            <li>Skoliózy</li>
+            <li>Entezopatie (tenisový, golfový loket, skokanské koleno)</li>
+            <li>Úžinové syndromy (syndrom karpálního tunelu, skalenový syndrom)</li>
+            <li>Premenstruační syndrom a bolestivá menstruace</li>
+            <li>Degenerativní onemocnění kloubů (artrózy)</li>
+            <li>Neurologická onemocnění</li>
+            <li>Přetížené svaly nebo fascie</li>
+            <li>Vadné držení těla, centrální koordinační poruchy</li>
+            <li>Poruchy v oblasti čelistního kloubu</li>
+        </ul>
+    </Accordion>
+    <Accordion title="Metody a terapeutické přistupy ve fyzioterapii pro dospělé" client:only="react">
+        <ul>
+            <li>Dynamická neuromuskulární stabilizace podle prof. Pavla Koláře (DNS)</li>
+            <li>Senzomotorická stimulace</li>
+            <li>Integrace primitivních reflexů</li>
+            <li>Reflexní lymfodrenáž</li>
+            <li>Metoda Ludmily Mojžíšové</li>
+            <li>Viscerální terapie</li>
+            <li>Kinesiotaping</li>
+            <li>Mobilizace periferních kloubů a páteře</li>
+            <li>Techniky měkkých tkání</li>
+            <li>Postizometrické relaxace a podobné techniky</li>
+            <li>Léčebná tělesná výchova (individuální, skupinovou, na neurofyziologickém podkladě)</li>
+            <li>Senzomotorické cvičení s využitím velkého množství pomůcek a labilních ploch</li>
+            <li>Diagnostika a terapie poruch páteře metodou McKenzie</li>
+            <li>Terapie poruch pánevního dna</li>
+            <li>Techniky PNF (proprioceptivní neuromuskulární facilitace) podle Kabata</li>
+            <li>Diagnostika a terapie konceptem A. Bruggera</li>
+            <li>Reflexní lokomoce dle Dr. Vojty</li>
+            <li>Respirační fyzioterapie</li>
+        </ul>
+    </Accordion>
+    </div>
+    <div class="background-footer"/>
+</div>

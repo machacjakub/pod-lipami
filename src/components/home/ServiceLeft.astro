@@ -1,12 +1,12 @@
 ---
-const { title, text, image } = Astro.props;
+const { title, text, image, path } = Astro.props;
 ---
 <div id="flex">
     <img src={image} alt="service-ilustration">
     <div id="information">
         <h3>{title}</h3>
         <p>{text}</p>
-        <button>Více</button>
+        <a href={`/sluzby/${path}`}><button>Více</button></a>
     </div>
     <div id="background"/>
 </div>
@@ -22,7 +22,7 @@ const { title, text, image } = Astro.props;
         height: 380px;
         width: 80vw;
         right: 0;
-        background-color: var(--salmon-light);
+        background-color: var(--salmon-lighter);
         border: solid var(--salmon-dark);
         border-width: 4px 0 4px 4px;
         border-radius: 80px 0 0 80px;

@@ -2,10 +2,10 @@
 import Logo from '../components/Logo.astro'
 import { DropdownMenuButton } from './DropdownMenuButton'
 const links = [
-	{ label: "Služby", path: '/sluzby' },
+	{ label: "Služby", path: '/#sluzby' },
 	{ label: "Ceník", path: '/cenik' },
-	{ label: "O nás", path: '/o-nas' },
-	{ label: "Kontakt", path: '/kontakt' }
+	{ label: "O nás", path: '/#kontakt' },
+	{ label: "Kontakt", path: '/#kontakt' }
 ]
 ---
 <!doctype html>
@@ -45,6 +45,7 @@ const links = [
 		--background-light-blue: #e0eaef;
 		--background-lighter-blue: #f0fcfd;
 		--salmon-light: #FFD8CC;
+		--salmon-lighter: #ffe3dc;
 		--salmon-dark: #d4856a;
 		--salmon-darker: #8f543f;
 	}
