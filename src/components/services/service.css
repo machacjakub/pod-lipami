@@ -1,5 +1,7 @@
 .wrapper {
-    margin: 100px;
+    margin: 100px auto;
+    max-width: 1200px;
+    width: 80vw;
 }
 
 .background-head {
@@ -21,4 +23,32 @@
 h1 {
     text-align: center;
     color: var(--salmon-dark);
+}
+
+p {
+    line-height: 24px;
+}
+
+@media (max-width: 800px) {
+    p {
+        line-height: 20px;
+        font-size: 14px;
+    }
+    h1 {
+        font-size: 26px;
+        margin: 20px 4vw;
+    }
+    .wrapper {
+        margin: 70px max(0px, calc(26vw - 110px));
+        width: auto;
+    }
+    .content {
+        padding: 20px 8vw 60px;
+    }
+    .background-head {
+        height: 60px;
+    }
+    .background-footer {
+        height: 60px;
+    }
 }

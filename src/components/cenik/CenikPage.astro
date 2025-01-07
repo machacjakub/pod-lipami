@@ -1,6 +1,5 @@
 ---
 ---
-<div class="flex">
     <div class="wrapper">
         <h2>Informace pro pacienty</h2>
         <p>
@@ -30,7 +29,6 @@
         <a href="/#kontakt"><button client:only="react" id="reservation-button">Rezervovat termín</button></a>
         </div>
     </div>
-</div>
 <style>
     h2 {
         text-align: center;
@@ -42,6 +40,7 @@
         font-size: 18px;
         border-collapse: collapse;
         background-color: var(--green-lighter);
+        table-layout: auto;
     }
     td {
         border: solid white;
@@ -51,20 +50,18 @@
     td.price {
         text-align: right;
         border-width: 3px 0 3px 3px;
-        width: 200px;
-        padding-right: 10px;
-    }
-    .flex {
-        display: flex;
-        margin: 100px;
-        padding: 50px 100px 100px;
-        background-image: linear-gradient(white, var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), white);
-        justify-content: center;
+        padding: 0 10px 0 4vw;
+        min-width: 60px;
     }
     .wrapper {
-        width: min(1000px, 60vw);
-        padding: 10px 8vw 40px;
-        border-radius: 40px;
+        margin: 100px auto;
+        max-width: 1000px;
+        width: 70vw;
+        display: flex;
+        flex-direction: column;
+        padding: 60px 6vw 120px;
+        background-image: linear-gradient(white, var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), white);
+        justify-content: center;
     }
     .flex-column {
         display: flex;
@@ -77,13 +74,6 @@
     }
     .samoplatce {
         font-size: 20px;
-    }
-    #blurred-line {
-        width: 20px;
-        margin-right: 40px;
-        background-color: var(--green-light);
-        filter: blur(5px);
-        flex-shrink: 0;
     }
     #cenik-pro-samoplatce {
         margin-top: 50px;
@@ -102,5 +92,31 @@
     }
     button:hover {
         box-shadow: 0 0 10px white;
+    }
+    @media (max-width: 800px) {
+        p {
+            line-height: 20px;
+            font-size: 14px;
+        }
+        .samoplatce {
+            font-size: 16px;
+        }
+        h2 {
+            font-size: 24px;
+            margin: 20px 4vw;
+        }
+        .wrapper {
+            margin: 70px max(0px, calc(26vw - 110px));
+            width: auto;
+            padding: 50px 8vw 100px;
+        }
+        td {
+            font-size: 14px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 16px;
+            border-radius: 14px;
+        }
     }
 </style>

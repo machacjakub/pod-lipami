@@ -53,6 +53,8 @@
 
 a {
     all: unset;
+    color: var(--green-dark);
+    text-decoration: none;
 }
 
 @media (max-width: 1150px) {
@@ -62,5 +64,4 @@ a {
     .dropdown-button:hover {
         background-color: var(--salmon-light);
     }
-
 }
