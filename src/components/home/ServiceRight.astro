@@ -15,26 +15,29 @@ const { title, text, image, path } = Astro.props;
     img {
         height: 360px;
         z-index: 10;
-        margin-top: 14px;
+        margin-top: 24px;
         box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.3);
     }
     #background {
         position: absolute;
-        height: 380px;
+        height: 400px;
         width: 80vw;
         left: 0;
-        background-color: var(--background-light-blue);
+        //background-color: var(--background-light-blue);
         border: solid var(--green-light);
+        background-image: linear-gradient(to left, white, var(--background-light-blue), var(--background-light-blue));
         border-width: 4px 4px 4px 0;
         border-radius: 0 80px 80px 0;
         z-index: 0;
     }
     #flex {
         display: flex;
+        justify-content: right;
         gap: 40px;
     }
     #information {
-        padding: 40px 80px 40px 120px;
+        padding: 50px calc(10px + 6vw) 40px 6vw;
+        max-width: 900px;
         z-index: 10;
         margin: auto 0;
         display: flex;

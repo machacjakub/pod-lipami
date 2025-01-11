@@ -14,15 +14,16 @@ const { title, text, image, path } = Astro.props;
     img {
         height: 360px;
         z-index: 10;
-        margin-top: 14px;
+        margin-top: 24px;
         box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
     }
     #background {
         position: absolute;
-        height: 380px;
+        height: 400px;
         width: 80vw;
         right: 0;
-        background-color: var(--salmon-lighter);
+        background-image: linear-gradient(to right,white, var(--salmon-light), var(--salmon-light));
+        //background-color: var(--salmon-lighter);
         border: solid var(--salmon-dark);
         border-width: 4px 0 4px 4px;
         border-radius: 80px 0 0 80px;
@@ -33,7 +34,8 @@ const { title, text, image, path } = Astro.props;
         gap: 40px;
     }
     #information {
-        padding: 40px 240px 40px 50px;
+        padding: 50px calc(10px + 6vw) 40px 4vw;
+        max-width: 900px;
         z-index: 10;
         margin: auto 0;
         display: flex;
