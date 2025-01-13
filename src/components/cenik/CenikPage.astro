@@ -10,20 +10,31 @@
         <div class="flex-column">
         <table>
             <tr>
-                <td>Komplexní individuální terapie</td>
+                <td rowspan="2">
+                    <div class="with-description">
+                        <span>Komplexní individuální terapie</span>
+                        <span class="small-text">(fyzioterapie, fyzioterapie pro děti a miminka, podoogie, viscelární terapie)</span>
+                    </div>
+                </td>
+                <td class="price">60 min</td>
                 <td class="price">1 100 Kč</td>
+            </tr>
+            <tr>
+                <td class="price">30 min</td>
+                <td class="price">600 Kč</td>
             </tr>
             <tr>
                 <td>Terapie s prvky senzorické integrace</td>
-                <td class="price">1 000 Kč</td>
+                <td class="price" colspan="2">1 000 Kč</td>
             </tr>
             <tr>
-                <td>Kraniosakrální terapie</td>
-                <td class="price">1 100 Kč</td>
+                <td rowspan="2">Laseroterapie</td>
+                <td class="price">do 10 min</td>
+                <td class="price">150 Kč</td>
             </tr>
             <tr>
-                <td>Masáž zad a šije 50min</td>
-                <td class="price">1 000 Kč</td>
+                <td class="price">do 20 min</td>
+                <td class="price">250 Kč</td>
             </tr>
         </table>
         <a href="/#kontakt"><button client:only="react" id="reservation-button">Rezervovat termín</button></a>
@@ -50,7 +61,7 @@
     td.price {
         text-align: right;
         border-width: 3px 0 3px 3px;
-        padding: 0 10px 0 4vw;
+        padding: 10px 10px 10px 4vw;
         min-width: 60px;
     }
     .wrapper {
@@ -92,6 +103,16 @@
     }
     button:hover {
         box-shadow: 0 0 10px white;
+    }
+    .with-description {
+        display: flex;
+        flex-direction: column;
+    }
+    .small-text {
+        font-size: 12px;
+        text-wrap: wrap;
+        color: #424242;
+        max-width: 240px;
     }
     @media (max-width: 800px) {
         p {
