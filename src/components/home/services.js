@@ -1,7 +1,7 @@
 export const services = [
   {
     title: "Fyzioterapie",
-    text: "Hlavním cílem fyzioterapie je obnovení a normalizace pohybů tak, aby nedocházelo k přetížení a bolestem pohybového systému. Základem terapie je správná diagnostika, která se opírá o anamnézu (pohovor s pacientem o průběhu a charakteru jeho obtíží)\n.",
+    text: "Hlavním cílem fyzioterapie je obnovení a normalizace pohybů tak, aby nedocházelo k přetížení a bolestem pohybového systému. Základem terapie je správná diagnostika, která se opírá o anamnézu (pohovor s pacientem o průběhu a charakteru jeho obtíží).",
     image: "/sluzby/fyzioterapie.png",
     path: "fyzioterapie"
   },
