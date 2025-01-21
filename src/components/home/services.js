@@ -7,7 +7,7 @@ export const services = [
   },
   {
     title: "Fyzioterapie pro děti a miminka",
-    text: "Fyzioterapie pro děti zahrnuje péči o kojence (0–4 roky) zaměřenou na psychomotorický vývoj, asymetrie, reflux a neurologické obtíže, i pro děti od 5 let, se zaměřením na bolesti, skoliózu, držení těla a grafomotoriku. Součástí je senzorická integrace, která podporuje zpracování smyslových podnětů a motoriku; terapie řeší obtíže formou hry ve speciálním prostředí.",
+    text: "Fyzioterapie pro děti zahrnuje péči o kojence a děti do 4 let zaměřenou na psychomotorický vývoj, asymetrie, reflux a neurologické obtíže, pro děti od 5 let, se zaměřením na bolesti, skoliózu, držení těla a grafomotoriku. Součástí je senzorická integrace, která podporuje zpracování smyslových podnětů a motoriku; terapie řeší obtíže formou hry ve speciálním prostředí.",
     image: "/sluzby/pro-deti.png",
     path: "fyzioterapie-pro-deti"
   },

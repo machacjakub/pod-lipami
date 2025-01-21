@@ -8,13 +8,13 @@ import ServiceRight from "./ServiceRight.astro";
         <h2>Naše služby</h2>
     </div>
     <div id="services-list">
-    {services.map((service, i) =>  {
-        if(i%2 === 1) {
-            return <ServiceRight image={service.image} title={service.title} text={service.text} path={service.path} />
+        {services.map((service, i) =>  {
+            if(i%2 === 1) {
+                return <ServiceRight image={service.image} title={service.title} text={service.text} path={service.path} />
+            }
+            return <ServiceLeft image={service.image} title={service.title} text={service.text} path={service.path} />
+            })
         }
-        return <ServiceLeft image={service.image} title={service.title} text={service.text} path={service.path} />
-        })
-    }
     </div>
 </section>
 <style>
