@@ -2,7 +2,7 @@
 const { title, text, image, path } = Astro.props;
 ---
 <div id="flex">
-    <img src={image} alt="service-ilustration">
+    <img src={image} alt="service-ilustration" loading="lazy" decoding="async">
     <div id="information">
         <h3>{title}</h3>
         <p>{text}</p>
@@ -20,7 +20,7 @@ const { title, text, image, path } = Astro.props;
     #background {
         position: absolute;
         height: 400px;
-        width: 80vw;
+        width: min(80vw, 1360px );
         right: 0;
         background-image: linear-gradient(to right,white, var(--salmon-light), var(--salmon-light));
         border: solid var(--salmon-dark);
@@ -101,6 +101,12 @@ const { title, text, image, path } = Astro.props;
         p {
             font-size: 16px;
             line-height: 23px;
+        }
+    }
+    @media (min-width: 1800px) {
+        #background {
+            border-radius: 80px;
+            border-width: 4px;
         }
     }
 </style>

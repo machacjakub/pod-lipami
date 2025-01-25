@@ -1,0 +1,85 @@
+---
+const {therapist: {name, bio, photo}} = Astro.props;
+---
+<section>
+    <div class="content">
+        <div id="blurred-line"/>
+        <div id="text">
+            <h2>{name}</h2>
+            <Fragment set:html={bio} />
+        </div>
+        <img alt="Fyizoterapeut" src={`./therapists/${photo}`} loading="lazy" decoding="async" />
+    </div>
+</section>
+<style>
+    img {
+        width: 280px;
+        height: min-content;
+        margin: auto;
+        border-radius: 40px;
+        //box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.33);
+        border:8px solid var(--green-light)
+    }
+    h2 {
+        color: var(--green-light);
+        margin: 0;
+        font-size: 30px;
+    }
+    .content {
+        font-size: 18px;
+        display: flex;
+        gap: min(calc(30px + 5vw), 80px);
+        align-items: stretch;
+    }
+    section {
+        background-image: linear-gradient(transparent, var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), transparent);
+        padding: 100px min(calc(50px + 7vw), 250px);
+    }
+    #blurred-line {
+        width: 20px;
+        background-color: var(--green-light);
+        filter: blur(5px);
+        flex-shrink: 0;
+    }
+    #text {
+        margin: auto;
+    }
+    @media (max-width: 1150px) {
+        h2 {
+            font-size: 28px;
+        }
+        img {
+            width: 25vw;
+        }
+        section {
+            padding: 140px calc(10px + 7vw)
+        }
+    }
+    @media (max-width: 800px) {
+        h2 {
+            font-size: 24px;
+        }
+        img {
+            width: min(60vw, 280px);
+        }
+        .content {
+            font-size: 14px;
+            flex-direction: column;
+            gap: 20px;
+        }
+        #blurred-line {
+            display: none;
+        }
+    }
+    @media (max-width: 450px) {
+        h2 {
+            font-size: 18px;
+        }
+        .content {
+            font-size: 12px;
+        }
+        section {
+            padding: 80px calc(10px + 10vw);
+        }
+    }
+</style>

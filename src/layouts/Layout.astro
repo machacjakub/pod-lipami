@@ -1,9 +1,9 @@
 ---
-import { DropdownMenuButton } from './DropdownMenuButton'
+import { DropdownMenuButton } from '../components/dropdown/DropdownMenuButton'
 const links = [
 	{ label: "Služby", path: '/#sluzby' },
 	{ label: "Ceník", path: '/cenik' },
-	{ label: "O nás", path: '/#kontakt' },
+	{ label: "O nás", path: '/o-nas' },
 	{ label: "Kontakt", path: '/#kontakt' }
 ]
 ---
@@ -11,10 +11,13 @@ const links = [
 <html lang="cs">
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
 		<meta name="viewport" content="width=device-width" />
-		<link rel="canonical" href="https://www.fyzioterapiepodlipami.cz/">
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="canonical" href="https://www.fyziopodlipami.cz/">
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
 		<meta name="robots" content="index, follow">
 		<meta name="description" content="Nabízíme komplexní fyzioterapeutické služby v Mladé Boleslavi. Pomáháme s bolestmi zad, kloubů a svalů.">
@@ -23,22 +26,25 @@ const links = [
 		<meta name="ICBM" content="50.42064, 14.9056">
 		<meta property="og:title" content="Fyzioterapie pod lipami">
 		<meta property="og:description" content="Profesionální fyzioterapie v Mladé Boleslavi.">
-		<meta property="og:image" content="https://fyziopodlipami.cz/thumbnail.png">
+		<meta property="og:image" content="https://fyziopodlipami.cz/thumbnail.jpg">
 		<meta property="og:url" content="https://fyziopodlipami.cz">
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="627"/>
 		<meta property="og:type" content="website"/>
 		<title>Fyzioterapie pod lipami</title>
-	</head>r
+	</head>
 	<body>
 		<nav>
 			<div id="navigation">
-				<a href="/"><img alt="logo" id="logo" height="54" src="/logo-transparent.png"/></a>
+				<a href="/"><img alt="logo" id="logo" height="54" src="/logo-transparent.webp" loading="eager"/></a>
 				<div class="nav-links">{links.map(link => <a class="link" href={link.path}>{link.label}</a>)}</div>
 				<div id="menu"><DropdownMenuButton client:only="react" items={links}/></div>
 			</div>
 		</nav>
 		<slot />
+	<!--<footer>-->
+	<!--	jnnfekjnflaslkfjas-->
+	<!--</footer>-->
 	</body>
 </html>
 
@@ -63,11 +69,12 @@ const links = [
 	}
 	html,
 	body {
-		margin: 0;
+		margin: 0 auto;
 		width: 100%;
 		height: 100%;
 		font-family: Sofia Sans, sans-serif;
 		scroll-behavior: smooth;
+		max-width: 1800px;
 	}
 	nav {
 		position: fixed;
@@ -76,6 +83,7 @@ const links = [
 		z-index: 100;
 		background-color: rgba(255, 255, 255, 0.47);
 		backdrop-filter: blur(10px);
+		max-width: 1800px;
 	}
 	#navigation {
 		display: flex;
@@ -100,6 +108,10 @@ const links = [
 		justify-content: space-between;
 		flex: 1;
 		max-width: 800px;
+	}
+	footer {
+		background-color: var(--background-light-blue);
+		padding: 20px;
 	}
 
 	@media (max-width: 800px) {

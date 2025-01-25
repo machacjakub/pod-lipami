@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Dropdown.css';
-import {MenuIcon} from "../components/MenuIcon.jsx"; // Ensure this file has the animation styles
+import {MenuIcon} from "../MenuIcon.jsx"; // Ensure this file has the animation styles
 
 export const DropdownMenuButton = ({items}) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +28,7 @@ export const DropdownMenuButton = ({items}) => {
                 <MenuIcon/>
             </button>
             <ul className={`dropdown-menu ${isOpen ? 'open' : ''}`}>
-                {items?.map(item => <li><a href={item.path}>{item.label}</a></li>)}
+                {items?.map(item => <a style={{textDecoration: "none"}} href={item.path}>{item.label}</a>)}
             </ul>
         </div>
     );

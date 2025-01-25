@@ -2,13 +2,13 @@
 const { title, text, image, path } = Astro.props;
 ---
 <div id="flex">
-    <img src={image} alt="service-ilustration" class="img-phone">
+    <img src={image} alt="service-ilustration" class="img-phone" loading="lazy" decoding="async">
     <div id="information">
         <h3>{title}</h3>
         <p>{text}</p>
         <a href={`/sluzby/${path}`}><button>Více</button></a>
     </div>
-    <img src={image} alt="service-ilustration" class="img-desktop">
+    <img src={image} alt="service-ilustration" class="img-desktop" loading="lazy" decoding="async">
     <div id="background"/>
 </div>
 <style>
@@ -21,7 +21,7 @@ const { title, text, image, path } = Astro.props;
     #background {
         position: absolute;
         height: 400px;
-        width: 80vw;
+        width: min(80vw, 1360px );
         left: 0;
         //background-color: var(--background-light-blue);
         border: solid var(--green-light);
@@ -113,6 +113,12 @@ const { title, text, image, path } = Astro.props;
         p {
             font-size: 16px;
             line-height: 23px;
+        }
+    }
+    @media (min-width: 1800px) {
+        #background {
+            border-radius: 80px;
+            border-width: 4px;
         }
     }
 </style>

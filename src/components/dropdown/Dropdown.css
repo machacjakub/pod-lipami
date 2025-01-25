@@ -55,6 +55,18 @@ a {
     all: unset;
     color: var(--green-dark);
     text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 8px 20px;
+}
+a:hover {
+    color: var(--green-light);
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 @media (max-width: 1150px) {

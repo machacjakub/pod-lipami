@@ -8,16 +8,16 @@
             <h4>Mladá Boleslav</h4>
             <a href="#kontakt"><button client:only="react" id="reservation-button">Rezervovat termín</button></a>
         </div>
-        <img id="hero-image-desktop" alt="Fyzioterapie pod lipami - úvodní obrázek" src="/hero-img.png" />
+        <img id="hero-image-desktop" alt="Fyzioterapie pod lipami - úvodní obrázek" src="/hero-img.webp" loading="eager" />
     </div>
-    <img id="hero-image-phone" alt="Hero image" src="/hero-img.png" />
+    <img id="hero-image-phone" alt="Hero image" src="/hero-img.webp" loading="eager"/>
 </section>
 <style>
     h1 {
         color: var(--green-dark);
         font-size: 48px;
         margin-bottom: 16px;
-        margin-right: max(20px, calc(60vw - 800px));
+        margin-right: min(200px, max(20px, calc(60vw - 800px)));
     }
     h4 {
         color: var(--green-light);
@@ -41,7 +41,7 @@
         box-shadow: 0 0 10px white;
     }
     #hero-wrapper {
-        height: 90vh;
+        height: 700px;
         display: flex;
         align-items: center;
     }
@@ -56,6 +56,7 @@
     }
     #hero-image-desktop {
         height: 400px;
+        width: auto;
         border-radius: 20px 0 0 20px ;
         border: var(--green-light ) solid;
         border-width: 10px 0 10px 10px;
@@ -123,18 +124,24 @@
             margin-right: 10%;
             flex-shrink: 0;
         }
-        @media (max-width: 400px) {
-            h1 {
-                font-size: 30px;
-            }
-            h4 {
-                font-size: 18px;
-            }
-            button {
-                padding: 10px 16px;
-                font-size: 18px;
-                border-radius: 10px;
-            }
+    }
+    @media (max-width: 400px) {
+        h1 {
+            font-size: 30px;
+        }
+        h4 {
+            font-size: 18px;
+        }
+        button {
+            padding: 10px 16px;
+            font-size: 18px;
+            border-radius: 10px;
+        }
+    }
+    @media (min-width: 1800px) {
+        #hero-image-desktop {
+            border-radius: 20px ;
+            border-width: 10px;
         }
     }
 </style>
