@@ -42,9 +42,14 @@ const links = [
 			</div>
 		</nav>
 		<slot />
-	<!--<footer>-->
-	<!--	jnnfekjnflaslkfjas-->
-	<!--</footer>-->
+	<footer>
+		<div>
+			<p><b>Helena Mazancová, DiS</b></p>
+			<p><b>IČO</b> 03211401</p>
+		</div>
+		<div>© 2025, Všechna práva vyhrazena</div>
+		<div>Web by <a href="https://www.linkedin.com/in/jakub-machac" id="jm">JM</a></div>
+	</footer>
 	</body>
 </html>
 
@@ -112,6 +117,17 @@ const links = [
 	footer {
 		background-color: var(--background-light-blue);
 		padding: 20px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		p {
+			margin: 0;
+		}
+	}
+
+	#jm {
+		font-weight: bold;
+		color: var(--green-dark);
 	}
 
 	@media (max-width: 800px) {
@@ -124,6 +140,12 @@ const links = [
 		}
 		.nav-links {
 			display: none;
+		}
+	}
+	@media (max-width: 600px) {
+		footer{
+			flex-direction: column;
+			gap: 20px;
 		}
 	}
 </style>

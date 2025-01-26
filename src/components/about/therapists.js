@@ -39,5 +39,17 @@ export const therapists = [
                 Spiraldynamik. Nejvíce mě baví práce s dětmi a se sportovci.</p>
             </div>`,
         photo: 'eliska.webp'
+    },
+    {
+        name: 'Mgr. Irena Horáčková',
+        bio: `<div></div><p>Jsem fyzioterapeut s dlouholetou praxí, pracuji jak s dětskými tak s dospělými pacienty. Na fyzioterapii mě baví neustálé hledání odpovědí na otázky, které nám klade naše tělo. Těší mě, když se podaří vtáhnout do tohoto procesu i pacienta, protože jedině tak muže dojít ke zlepšení.</p>
+                <p>Obor jsem vystudovala na FTVS UK. Mým prvním pracovištěm byla dětská léčebna Vesna v Janských Lázních. V Mladé Boleslavi jsem pracovala v několika ambulantních zařízeních a před 2 lety si založila i svou soukromou praxi.</p>
+                <p>Mojí oblíbenou metodou je dynamická neuromuskulární stabilizace, kterou ráda kombinuji s prvky jógy. Zajímají mě i vztahy pohybového aparátu a vnitřních orgánů. Věnuji se podologii, spolupracuji se Studiem zdravého obouvání, které vyrábí individuální vložky do bot.</p>
+                <p>V práci s dětmi využívám Vojtovu metodu i DNS. V posledních letech jsem se začala vzdělávat v terapii senzorické integrace, která nabízí širší pohled na pohybový vývoj dítěte. Snažím se pracovat vždy s myšlenkou, že nejlepší motivace pro dítě je hra.</p>
+           </div>`
+    },
+    {
+        name: 'Hanka Vytlačilová, DiS.',
+        bio: `<p>Dětský fyzioterapeut.</p>`
     }
 ]

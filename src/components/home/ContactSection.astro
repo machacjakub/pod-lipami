@@ -28,6 +28,10 @@ import LocationIcon from "../icons/LocationIcon.astro";
             <input id="input-email" type="email" name="email" required/>
             <label for="input-message">Zpráva</label>
             <textarea id="input-message" name="message" required/>
+            <div class="gdpr-wrapper">
+                <input id="input-gdpr" type="checkbox" name="gdpr" required />
+                <div> <label for="input-gdpr">Odesláním formuláře souhlasím se</label> <a target="_blank" href="/GDPR_Pod_Lipami.pdf">zpracováním osobních údajů</a>.</div>
+            </div>
             <button id="result" type="submit">Odeslat</button>
         </form>
     </div>
@@ -110,6 +114,25 @@ import LocationIcon from "../icons/LocationIcon.astro";
         box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.25);
         font-family: Sofia Sans, sans-serif;
         padding-left: 8px;
+    }
+    .gdpr-wrapper {
+        margin: 10px 0 0;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        a {
+            font-size: 14px;
+            padding: 0;
+        }
+        label {
+            margin: 0;
+            font-size: 14px;
+        }
+    }
+    #input-gdpr {
+        min-width: 20px;
+        height: 20px;
+        accent-color: var(--green-light);
     }
     textarea {
         width: min(60vw, 400px);

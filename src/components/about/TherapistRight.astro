@@ -8,7 +8,7 @@ const {therapist: {name, bio, photo}} = Astro.props;
             <h2>{name}</h2>
             <Fragment set:html={bio} />
         </div>
-        <img alt="Fyizoterapeut" src={`./therapists/${photo}`} loading="lazy" decoding="async" />
+        <!--<img alt="Fyizoterapeut" src={`./therapists/${photo}`} loading="lazy" decoding="async" />-->
     </div>
 </section>
 <style>
@@ -40,9 +40,6 @@ const {therapist: {name, bio, photo}} = Astro.props;
         background-color: var(--green-light);
         filter: blur(5px);
         flex-shrink: 0;
-    }
-    #text {
-        margin: auto;
     }
     @media (max-width: 1150px) {
         h2 {
