@@ -60,9 +60,12 @@
         border-radius: 20px 0 0 20px ;
         border: var(--green-light ) solid;
         border-width: 10px 0 10px 10px;
+        opacity: 0; /* Initially hidden */
+        animation: fadeInFromTop 1s ease-out forwards;
     }
     #hero-image-phone {
         display: none;
+        animation: fadeInFromTop 1s ease-out forwards;
     }
     #blurred-line {
         width: 20px;
@@ -142,6 +145,16 @@
         #hero-image-desktop {
             border-radius: 20px ;
             border-width: 10px;
+        }
+    }
+    @keyframes fadeInFromTop {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 </style>
