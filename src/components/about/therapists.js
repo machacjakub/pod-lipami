@@ -55,7 +55,7 @@ export const therapists = [
     {
         name: 'Bc. Kateřina Maťáková',
         bio: `<div>
-                <p>Jsem absolventkou oboru fyzioterapie na Zdravotně sociální fakultě Jihočeské univerzity. Po ukončení studia jsem nastoupila do FN v Motole, konkrétně na oddělení neurologie. Dále moje kroky vedly na Kliniku Dr. Pírka, kde jsem sbírala zkušenosti na ortopedickém oddělení a na ambulanci. V ambulantní praxi pracuji jak s dospělou klientelou, tak s dětmi. Ke každému se snažím přistupovat individuálně s ohledem na jeho aktuální zdravotní stav. Zároveň chci klienta motivovat k péči o fyzické zdraví tím, že se naučí lépe vnímat své tělo a pohyb. Při práci nejčastěji využívám prvky z metody DNS, ACT, spirální stabilizaci páteře, nespecifické mobilizace a kinesiotaping.</p>
+                <p>Jsem absolventkou oboru fyzioterapie na Zdravotně sociální fakultě Jihočeské univerzity. Po ukončení studia jsem nastoupila do FN v Motole, konkrétně na oddělení neurologie. Dále moje kroky vedly na Kliniku Dr. Pírka, kde jsem sbírala zkušenosti na ortopedickém oddělení a na ambulanci.</p>
                 <p>V ambulantní praxi pracuji jak s dospělou klientelou, tak s dětmi. Ke každému se snažím přistupovat individuálně s ohledem na jeho aktuální zdravotní stav. Zároveň chci klienta motivovat k péči o fyzické zdraví tím, že se naučí lépe vnímat své tělo a pohyb. Při práci nejčastěji využívám prvky z metody DNS, ACT, spirální stabilizaci páteře, nespecifické mobilizace a kinesiotaping.</p>
               </div>`
     }

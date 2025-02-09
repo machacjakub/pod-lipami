@@ -1,0 +1,193 @@
+---
+---
+    <div class="wrapper">
+        <h1>Informace</h1>
+        <div>
+            <h3>Objednávání</h3>
+            <b><p>Objednat se k vyšetření / ošetření je možné telefonicky, přes email, osobně v pondělí, ve středu nebo v pátek od 8 do 12h.</p>
+                <p>Ostatní pracovní dobu prosím respektujte práci a potřebný čas, který fyzioterapeuti věnují svým klientům pro kvalitní terapii. Pro objednání pište email, SMS či vyčkejte na zpětné zavolání.</p></b>
+            <p>Platnost dárkových poukazů a permanentek je <b> 1 rok od jejich vydání.</b></p>
+
+            <div id="oteviraci-doba">
+                <div>
+                    <p>
+                        <table>
+                            <tr>
+                                <th>Den</th>
+                                <th>Otevírací doba</th>
+                            </tr>
+                            <tr>
+                                <td>Pondělí</td>
+                                <td>7:00 - 15:00</td>
+                            </tr>
+                            <tr>
+                                <td>Úterý</td>
+                                <td>7:00 - 15:00</td>
+                            </tr>
+                            <tr>
+                                <td>Středa</td>
+                                <td>7:00 - 15:00</td>
+                            </tr>
+                            <tr>
+                                <td>Čtvrtek</td>
+                                <td>7:00 - 15:00</td>
+                            </tr>
+                            <tr>
+                                <td>Pátek</td>
+                                <td>7:00 - 15:00</td>
+                            </tr>
+                        </table>
+                        <p>Nemůže-li se klient dostavit k terapii, je jeho povinností se předem omluvit. V případě omluvy až v den terapie nelze garantovat náhradu termínu. Pokud se klient z terapie předem neomluví, nárok na náhradní termín zaniká úplně. V případě <b>neomluvení či zrušení</b> termínu <b> méně jak 12h </b> před plánovanou terapií (u samoplátce) činí <b>storno poplatek 100% ceny </b> terapie.</p>
+                        <p>Pokud se klient <b> 2x po sobě na terapii nedostaví</b>, zbývající objednané termíny terapií mu budou zrušeny bez nároku na náhradu celé terapie.</p>
+                        <p>K objednání je potřeba mít žádanku, kterou vyplní a potvrdí praktický nebo odborný lékař. Po vystavení žádanky by měl pacient do jednoho týdne kontaktovat fyzioterapeutické pracoviště. Lékař může pouze doporučit konkrétní zařízení, ale konečná volba závisí na pacientovi.</p>
+                    </p>
+                </div>
+            </div>
+            <p class="samoplatce"><b>Pro samoplátce</b> není nutná žádanka, terapii si hradi klient sám, viz ceník.</p>
+            <div class="flex-column">
+                <a href="/#kontakt"><button client:only="react" id="reservation-button">Rezervovat termín</button></a>
+            </div>
+
+            <h3>Po příchodu</h3>
+            <p>Klient při přijetí do ambulance prokáže svoji totožnost průkazem zdravotní pojišťovny.</p>
+            <p>Klient je povinen nahlásit změnu zdravotní pojišťovny, trvalého bydliště, telefonního čísla.</p>
+            <p>V případě, že bude klient vykazovat známky akutního infekčního nebo respiračního onemocnění, požití alkoholu či jiných omamných látek, nebude k terapii přijat.</p>
+            <p>Klient může absolvovat terapii pouze po řádné osobní hygieně v čistém oblečení.</p>
+
+            <p style="color: #da0000">V našem zařízení používáme jednorázová prostěradla za poplatek 50Kč/ks nebo si klient nosí vlastní podložku či ručník.</p>
+
+            <h3>Vnitřní řád pro klienty rehabilitace</h3>
+            <p>Klient má povinnost se chovat slušně ke zdravotnickým pracovníkům, respektovat jejich pokyny a chovat se slušně a ohleduplně k ostatním pacientům či jejich doprovodu.</p>
+            <p>Vnitřní řád je pro všechny klienty závazný. Není vaší povinností s ním souhlasit. Nesouhlas s Vnitřním řádem je zároveň nesouhlasem pacienta s poskytnutím péče v našem zdravotnickém zařízení FYZIOTERAPIE POD LIPAMI s.r.o..</p>
+            <p>Hrubé porušení Vnitřního řádu ze strany klienta je důvodem k odmítnutí jeho vyšetření / ošetření či jeho vyřazení z péče zdravotnického zařízení.</p>
+            <p style="margin-top: 50px; color: var(--green-dark); font-weight: bold">Jsme tady pro Vás a věříme, že se s námi budete podílet a spolupracovat na vaší léčbě.</p>
+        </div>
+
+
+    </div>
+<style>
+    #oteviraci-doba {
+        display: flex;
+        gap: 40px;
+    }
+    h1 {
+        color: var(--green-dark);
+        font-size: 48px;
+        text-align: center;
+    }
+    h2 {
+        text-align: center;
+        font-size: 28px;
+        color: var(--green-dark);
+    }
+    h3 {
+        text-align: left;
+        margin-top: 40px;
+        font-size: 22px;
+        color: var(--green-dark);
+    }
+    table {
+        margin: 0 40px 20px 0;
+        float: left;
+        flex-shrink: 0;
+        font-size: 18px;
+        border-collapse: collapse;
+        background-color: var(--green-lighter);
+        table-layout: auto;
+        height: min-content;
+    }
+    td {
+        border: solid white;
+        border-width: 3px 0 3px 0;
+        padding: 10px 30px 10px 10px;
+    }
+    th {
+        text-align: left;
+        border: solid white;
+        border-width: 3px 0 3px 0;
+        padding: 10px 30px 10px 10px;
+    }
+    td.price {
+        text-align: right;
+        border-width: 3px 0 3px 3px;
+        padding: 10px 10px 10px max(calc(5vw - 10px), 10px);
+        text-wrap: nowrap;
+    }
+    .wrapper {
+        min-height: 90vh;
+        margin: 100px auto;
+        max-width: 1000px;
+        width: 70vw;
+        display: flex;
+        flex-direction: column;
+        padding: 60px 6vw 120px;
+        background-image: linear-gradient(white, var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), white);
+        justify-content: center;
+    }
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+    p {
+        font-size: 18px;
+    }
+    .samoplatce {
+        font-size: 20px;
+    }
+    #cenik-pro-samoplatce {
+        margin-top: 50px;
+    }
+    button {
+        background-color: var(--salmon-light);
+        padding: 12px 20px;
+        font-family: Sofia Sans, sans-serif;
+        border: none;
+        border-radius: 18px;
+        font-size: 20px;
+        font-weight: 600;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.34);
+        cursor: pointer;
+        color: var(--salmon-darker);
+    }
+    button:hover {
+        box-shadow: 0 0 10px white;
+    }
+    .with-description {
+        display: flex;
+        flex-direction: column;
+    }
+    .small-text {
+        font-size: 12px;
+        text-wrap: wrap;
+        color: #424242;
+        max-width: 240px;
+    }
+    @media (max-width: 800px) {
+        p {
+            line-height: 20px;
+            font-size: 14px;
+        }
+        .samoplatce {
+            font-size: 16px;
+        }
+        h2 {
+            font-size: 24px;
+            margin: 20px 4vw;
+        }
+        .wrapper {
+            margin: 70px max(0px, calc(26vw - 110px));
+            width: auto;
+            padding: 50px 8vw 100px;
+        }
+        td {
+            font-size: 14px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 16px;
+            border-radius: 14px;
+        }
+    }
+</style>
