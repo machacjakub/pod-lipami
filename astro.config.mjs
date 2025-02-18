@@ -7,6 +7,6 @@ import compressor from 'astro-compressor';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://www.fyziopodlipami.cz/',
+    site: 'https://fyziopodlipami.cz',
     integrations: [react(), sitemap(), playformCompress({JavaScript: false, HTML: true, CSS: true, SVG: true}), compressor()],
 });
