@@ -89,7 +89,6 @@ const canonical = `${site}${url}/`.replace(/\/+$/, "/");
 	<body>
 		<nav>
 			<div id="navigation">
-				<div>{canonical}</div>
 				<a href="/"><img alt="logo" id="logo" height="54" src="/logo-transparent.webp" loading="eager"/></a>
 				<div class="nav-links">{links.map(link => <a class="link" href={link.path}>{link.label}</a>)}</div>
 				<div id="menu"><DropdownMenuButton client:only="react" items={links}/></div>
