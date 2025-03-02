@@ -24,7 +24,10 @@ const canonical = `${site}${url}/`.replace(/\/+$/, "/");
 		<meta charset="UTF-8" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap" />
+		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100..900&family=Sofia+Sans:wght@1..1000&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+		<noscript>
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100..900&family=Sofia+Sans:wght@1..1000&display=swap">
+		</noscript>
 		<meta name="viewport" content="width=device-width" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="canonical" href={canonical}>
@@ -107,6 +110,20 @@ const canonical = `${site}${url}/`.replace(/\/+$/, "/");
 </html>
 
 <style>
+	@font-face {
+		font-family: 'Exo 2';
+		font-style: normal;
+		font-weight: 100 900;
+		font-display: swap;
+		src: url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100..900&display=swap');
+	}
+	@font-face {
+		font-family: 'Sofia Sans';
+		font-style: normal;
+		font-weight: 1 1000;
+		font-display: swap;
+		src: url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@1..1000&display=swap');
+	}
 	a {
 		all: unset;
 		cursor: pointer;
