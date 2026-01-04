@@ -7,8 +7,45 @@ import ContactSection from './ContactSection.astro'
 ---
 <main>
     <HeroSection/>
-    <div style="width: 100%; display: flex; justify-content: center; margin-bottom: 90px;">
-        <img src="oznameni-o-stehovani.webp" width="536" loading="eager" decoding="async"/>
+    <div class="container">
+        <div class="section">
+            <p>
+                Milí klienti, od ledna 2026 nás nově najdete na této adrese:
+            </p>
+            <p class="highlight">
+                📍 Hotel Galatea<br>
+                Pod koupalištěm 881, Kosmonosy
+            </p>
+        </div>
+
+        <div class="section">
+            <p class="highlight">🟢 Zahájení provozu:</p>
+            <p>
+                V pondělí <strong>5. 1. 2026</strong> zahajujeme provoz v nových prostorách.
+            </p>
+        </div>
+
+        <div class="section">
+            <p class="highlight">➡️ Hlavní vchod – recepce:</p>
+            <p>ordinace Bc. Kateřiny Štěpánkové</p>
+
+            <p class="highlight">➡️ Vedlejší vchod (wellness):</p>
+            <p>ostatní fyzioterapeuti, elektroléčba, magnetoterapie, laser</p>
+        </div>
+
+        <div class="section">
+            <p class="highlight">📞 Objednávání:</p>
+            <p>
+                PO–ST–PÁ | 8:00–12:00<br>
+                SMS: <a href="tel:+420731205253">+420 731 205 253</a><br>
+                ✉️ <a href="mailto:fyzioterapiepodlipami@gmail.com">fyzioterapiepodlipami@gmail.com</a><br>
+            </p>
+        </div>
+
+        <p>
+            Těšíme se na vás v nových prostorách 💚<br>
+            <strong>Fyzioterapie pod lipami</strong>
+        </p>
     </div>
     <Quote>Naše centrum Vám nabízí komplexní ambulantní služby v oboru fyzioterapie a léčebné rehabilitace, pro všechny věkové kategorie.</Quote>
     <InsuranceCompanies/>
@@ -16,3 +53,25 @@ import ContactSection from './ContactSection.astro'
     <ServicesSection/>
     <ContactSection/>
 </main>
+<style>
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        font-size: 1.4em;
+    }
+    a {
+        font-size: 1.1em;
+    }
+    .highlight {
+        font-weight: bold;
+    }
+    .section {
+        margin-bottom: 8px;
+    }
+    @media (max-width: 600px) {
+        .container {
+            font-size: 1em;
+        }
+    }
+</style>
