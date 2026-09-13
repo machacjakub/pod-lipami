@@ -18,10 +18,10 @@ export const services = [
     path: "podologie"
   },
   {
-    title: "Viscelární terapie",
+    title: "Viscerální terapie",
     text: "Jemná manuální metoda zaměřená na uvolnění napětí vnitřních orgánů, zlepšení jejich funkce a podporu celkového zdraví. Pomáhá při bolestech břicha, trávících problémech, refluxu, gynekologických obtížích, pooperační péči a u dětí na zmírnění stresu a trávících potíží.",
     image: "/sluzby/viscelarni.webp",
-    path: "viscelarni-terapie"
+    path: "visceralni-terapie"
   },
   {
     title: "Fyzikální terapie",
