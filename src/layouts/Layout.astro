@@ -13,10 +13,13 @@ interface Props {
 	description?: string;
 }
 
-const {title = 'Fyzioterapie pod lipami', description = 'Nabízíme komplexní fyzioterapeutické služby v Mladé Boleslavi. Pomáháme s bolestmi zad, kloubů a svalů.' } = Astro.props as Props;
+const {title = 'Fyzioterapie pod Lipami', description = 'Fyzioterapie pod Lipami v Kosmonosech u Mladé Boleslavi. Komplexní rehabilitace při bolestech zad, kloubů a svalů pro děti i dospělé. Objednejte se.' } = Astro.props as Props;
 const url = Astro.url.pathname;
 const site = Astro.site.origin;
 const canonical = `${site}${url}/`.replace(/\/+$/, "/");
+
+const brand = 'Fyzioterapie pod Lipami';
+const fullTitle = title === brand ? `${brand} | Kosmonosy u Mladé Boleslavi` : `${title} | ${brand}`;
 ---
 <!doctype html>
 <html lang="cs">
@@ -37,9 +40,9 @@ const canonical = `${site}${url}/`.replace(/\/+$/, "/");
 		<meta name="robots" content="index, follow">
 		<meta name="description" content={description}>
 		<meta name="geo.region" content="CZ-20"> <!-- CZ is the country code, 20 is the region code -->
-		<meta name="geo.placename" content="Mladá Boleslav">
-		<meta name="ICBM" content="50.42064, 14.9056">
-		<meta property="og:title" content="Fyzioterapie pod lipami">
+		<meta name="geo.placename" content="Kosmonosy">
+		<meta name="ICBM" content="50.443973, 14.922963">
+		<meta property="og:title" content={fullTitle}>
 		<meta property="og:description" content={description}>
 		<meta property="og:image:type" content="image/jpeg">
 		<meta property="og:image" content="https://fyziopodlipami.cz/thumbnail.jpg">
@@ -50,33 +53,34 @@ const canonical = `${site}${url}/`.replace(/\/+$/, "/");
 		<meta property="og:type" content="website"/>
 		<meta property="og:locale" content="cs_CZ">
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="Fyzioterapie pod lipami">
+		<meta name="twitter:title" content={fullTitle}>
 		<meta name="twitter:description" content={description}>
 		<meta name="twitter:image" content="https://fyziopodlipami.cz/thumbnail.jpg">
 		<meta name="author" content="Jakub Machač">
-		<title>{title}</title>
+		<title>{fullTitle}</title>
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
 				"@type": "MedicalBusiness",
-				"name": "Fyzioterapie pod lipami",
+				"name": "Fyzioterapie pod Lipami",
 				"image": "https://fyziopodlipami.cz/thumbnail.jpg",
-				"description": "Profesionální fyzioterapie v Mladé Boleslavi. Pomáháme s bolestmi zad, kloubů a svalů.",
+				"description": "Profesionální fyzioterapie v Kosmonosech u Mladé Boleslavi. Pomáháme s bolestmi zad, kloubů a svalů.",
 				"url": "https://fyziopodlipami.cz",
 				"telephone": "+420 731 205 253",
+				"email": "fyzioterapiepodlipami@gmail.com",
 				"priceRange": "$",
 				"address": {
 					"@type": "PostalAddress",
-					"streetAddress": "Václavkova 950",
-					"addressLocality": "Mladá Boleslav",
-					"addressRegion": "Central Bohemian Region",
-					"postalCode": "293 01",
+					"streetAddress": "Pod koupalištěm 881",
+					"addressLocality": "Kosmonosy",
+					"addressRegion": "Středočeský kraj",
+					"postalCode": "293 06",
 					"addressCountry": "CZ"
 				},
 				"geo": {
 					"@type": "GeoCoordinates",
-					"latitude": 50.42064,
-					"longitude": 14.9056
+					"latitude": 50.443973,
+					"longitude": 14.922963
 				},
 				"openingHoursSpecification": [
 					{
@@ -88,11 +92,19 @@ const canonical = `${site}${url}/`.replace(/\/+$/, "/");
 				]
 			}
 		</script>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"name": "Fyzioterapie pod Lipami",
+				"url": "https://fyziopodlipami.cz"
+			}
+		</script>
 	</head>
 	<body>
 		<nav>
 			<div id="navigation">
-				<a href="/"><img alt="logo" id="logo" height="54" src="/logo-transparent.webp" loading="eager"/></a>
+				<a href="/"><img alt="Fyzioterapie pod Lipami – logo" id="logo" height="54" src="/logo-transparent.webp" loading="eager"/></a>
 				<div class="nav-links">{links.map(link => <a class="link" href={link.path}>{link.label}</a>)}</div>
 				<div id="menu"><DropdownMenuButton client:only="react" items={links}/></div>
 			</div>
