@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/sluzby/viscelarni-terapie",
+      "destination": "/sluzby/visceralni-terapie/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sluzby/viscelarni-terapie/",
+      "destination": "/sluzby/visceralni-terapie/",
+      "statusCode": 301
+    }
+  ]
+}
