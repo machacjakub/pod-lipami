@@ -6,7 +6,7 @@ import { Accordion } from './Accordion';
     <div class="background-head"/>
     <div class="content">
         <h1>Fyzioterapie pro děti a miminka</h1>
-        <Accordion title="Fyzioterapie kojenců a mladších dětí (0-4roky)" client:only="react">
+        <Accordion title="Fyzioterapie kojenců a mladších dětí (0-4roky)" client:visible>
             <ul>
                 <li>Preventivní kontrola psychomotorického vývoje (PMV)</li>
                 <li>Konzultace zacházení (handlingu) s miminkem</li>
@@ -21,7 +21,7 @@ import { Accordion } from './Accordion';
                 <li>Snížení bolestivosti/korekce segmentu s využitím kineziotapingu</li>
             </ul>
         </Accordion>
-        <Accordion title="Fyzioterapie dětí od 5 let" client:only="react">
+        <Accordion title="Fyzioterapie dětí od 5 let" client:visible>
             <ul>
                 <li>Bolestivé stavy pohybového systému: akutní i chronické bolesti zad, bolesti hlavy</li>
                 <li>Skoliózy (vrozené i získané)</li>
@@ -35,7 +35,7 @@ import { Accordion } from './Accordion';
                 <li>Terapii lze přizpůsobit i dětem s mentální poruchou či kompenzovanou epilepsií</li>
             </ul>
         </Accordion>
-        <Accordion title="Senzorická integrace" client:only="react">
+        <Accordion title="Senzorická integrace" client:visible>
             <p>Senzorická integrace je proces, díky němuž dokážeme přijímat informace prostřednictvím našich smyslů, zpracovat je a používat v každodenním životě.</p>
             <h4>Senzorické zpracování zahrnuje:</h4>
             <ul>

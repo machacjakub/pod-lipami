@@ -10,7 +10,6 @@
 
             <div id="oteviraci-doba">
                 <div>
-                    <p>
                         <table>
                             <tr>
                                 <th>Den</th>
@@ -40,7 +39,6 @@
                         <p>Nemůže-li se klient dostavit k terapii, je jeho povinností se předem omluvit. V případě omluvy až v den terapie nelze garantovat náhradu termínu. Pokud se klient z terapie předem neomluví, nárok na náhradní termín zaniká úplně. V případě <b>neomluvení či zrušení</b> termínu <b> méně jak 12h </b> před plánovanou terapií (u samoplátce) činí <b>storno poplatek 100% ceny </b> terapie.</p>
                         <p>Pokud se klient <b> 2x po sobě na terapii nedostaví</b>, zbývající objednané termíny terapií mu budou zrušeny bez nároku na náhradu celé terapie.</p>
                         <p>K objednání je potřeba mít žádanku, kterou vyplní a potvrdí praktický nebo odborný lékař. Po vystavení žádanky by měl pacient do jednoho týdne kontaktovat fyzioterapeutické pracoviště. Lékař může pouze doporučit konkrétní zařízení, ale konečná volba závisí na pacientovi.</p>
-                    </p>
                 </div>
             </div>
             <p class="samoplatce"><b>Pro samoplátce</b> není nutná žádanka, terapii si hradi klient sám, viz ceník.</p>
@@ -48,13 +46,32 @@
                 <a href="/#kontakt"><button client:only="react" id="reservation-button">Rezervovat termín</button></a>
             </div>
 
-            <h3>Po příchodu</h3>
-            <p>Klient při přijetí do ambulance prokáže svoji totožnost průkazem zdravotní pojišťovny.</p>
-            <p>Klient je povinen nahlásit změnu zdravotní pojišťovny, trvalého bydliště, telefonního čísla.</p>
-            <p>V případě, že bude klient vykazovat známky akutního infekčního nebo respiračního onemocnění, požití alkoholu či jiných omamných látek, nebude k terapii přijat.</p>
-            <p>Klient může absolvovat terapii pouze po řádné osobní hygieně v čistém oblečení.</p>
+            <div class="two-columns">
+                <div class="column">
+                    <h3>Jak se k nám dostat</h3>
+                    <div class="video-wrapper">
+                        <video
+                            controls
+                            playsinline
+                            preload="metadata"
+                            poster="/jak-se-k-nam-dostat-poster.jpg"
+                        >
+                            <source src="/jak-se-k-nam-dostat.mp4" type="video/mp4" />
+                            Váš prohlížeč nepodporuje přehrávání videa.
+                        </video>
+                    </div>
+                </div>
 
-            <p style="color: #da0000">V našem zařízení používáme jednorázová prostěradla za poplatek 50Kč/ks nebo si klient nosí vlastní podložku či ručník.</p>
+                <div class="column">
+                    <h3>Po příchodu</h3>
+                    <p>Klient při přijetí do ambulance prokáže svoji totožnost průkazem zdravotní pojišťovny.</p>
+                    <p>Klient je povinen nahlásit změnu zdravotní pojišťovny, trvalého bydliště, telefonního čísla.</p>
+                    <p>V případě, že bude klient vykazovat známky akutního infekčního nebo respiračního onemocnění, požití alkoholu či jiných omamných látek, nebude k terapii přijat.</p>
+                    <p>Klient může absolvovat terapii pouze po řádné osobní hygieně v čistém oblečení.</p>
+
+                    <p style="color: #da0000">V našem zařízení používáme jednorázová prostěradla za poplatek 50Kč/ks nebo si klient nosí vlastní podložku či ručník.</p>
+                </div>
+            </div>
 
             <h3>Vnitřní řád pro klienty rehabilitace</h3>
             <p>Klient má povinnost se chovat slušně ke zdravotnickým pracovníkům, respektovat jejich pokyny a chovat se slušně a ohleduplně k ostatním pacientům či jejich doprovodu.</p>
@@ -124,6 +141,28 @@
         background-image: linear-gradient(white, var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), white);
         justify-content: center;
     }
+    .two-columns {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+    }
+    .two-columns .column {
+        flex: 1;
+        min-width: 0;
+    }
+    .video-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        margin: 20px 0 10px;
+    }
+    .video-wrapper video {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        border-radius: 18px;
+        box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.34);
+        background-color: black;
+    }
     .flex-column {
         display: flex;
         flex-direction: column;
@@ -165,6 +204,10 @@
         max-width: 240px;
     }
     @media (max-width: 800px) {
+        .two-columns {
+            flex-direction: column;
+            gap: 0;
+        }
         p {
             line-height: 20px;
             font-size: 14px;

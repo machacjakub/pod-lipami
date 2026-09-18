@@ -2,8 +2,14 @@ export const services = [
   {
     title: "Fyzioterapie",
     text: "Hlavním cílem fyzioterapie je obnovení a normalizace pohybů tak, aby nedocházelo k přetížení a bolestem pohybového systému. Základem terapie je správná diagnostika, která se opírá o anamnézu (pohovor s pacientem o průběhu a charakteru jeho obtíží).",
-    image: "/sluzby/fyzioterapie.webp",
+    image: "/sluzby/nova-fyzioterapie.webp",
     path: "fyzioterapie"
+  },
+  {
+    title: "Lymfodrenáž",
+    text: "Přístrojová lymfodrenáž jemně stimuluje lymfatický systém, podporuje odvod přebytečné tekutiny z organismu, zlepšuje cirkulaci lymfy a napomáhá regeneraci. Terapie je příjemná, bezbolestná a vhodná jako součást léčby i prevence. Pomáhá při otocích končetin, lymfedému, žilní nedostatečnosti, pooperačních stavech i při regeneraci po sportovní zátěži.",
+    image: "/sluzby/lymfodrenaz.webp",
+    path: "lymfodrenaz"
   },
   {
     title: "Fyzioterapie pro děti a miminka",
@@ -26,7 +32,7 @@ export const services = [
   {
     title: "Fyzikální terapie",
     text: "Využívá elektrický proud k léčbě různých diagnóz, jako jsou ortopedické, revmatologické, neurologické a cévní problémy. Pomáhá zmírnit bolest, uvolnit svaly a zlepšit prokrvení. Vysokovýkonový laser proniká do hlubokých tkání, urychluje hojení a zmírňuje bolest bez léků.",
-    image: "/sluzby/fyzikalni.webp",
+    image: "/sluzby/nova-fyzikalni-terapie.webp",
     path: "fyzikalni-terapie"
   },
 ]

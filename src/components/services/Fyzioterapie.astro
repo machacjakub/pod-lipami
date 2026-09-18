@@ -9,7 +9,7 @@ import { Accordion } from "./Accordion";
     <p>
         V našem centru vybíráme postup léčby ze široké škály metodik a terapeutických protředků individuálně podle potřeby každého klienta. Našim hlavním cílem je obnovení a normalizace pohybů tak, aby nedocházelo k přetížení a bolestem pohybového systému. Základem terapie je správná diagnostika, která se opírá o anamnézu (pohovor s pacientem o průběhu a charakteru jeho obtíží).
     </p>
-    <Accordion title="Indikace" client:only="react">
+    <Accordion title="Indikace" client:visible>
         <ul>
             <li>Akutní i chronické bolesti zad (krční, hrudní i bederní páteře)</li>
             <li>Bolesti zad po operaci páteře</li>
@@ -32,7 +32,7 @@ import { Accordion } from "./Accordion";
             <li>Poruchy v oblasti čelistního kloubu</li>
         </ul>
     </Accordion>
-    <Accordion title="Metody a terapeutické přistupy ve fyzioterapii pro dospělé" client:only="react">
+    <Accordion title="Metody a terapeutické přistupy ve fyzioterapii pro dospělé" client:visible>
         <ul>
             <li>Dynamická neuromuskulární stabilizace podle prof. Pavla Koláře (DNS)</li>
             <li>Senzomotorická stimulace</li>

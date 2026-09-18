@@ -4,6 +4,11 @@ import Quote from "./Quote.astro"
 import ServicesSection from "./ServicesSection.astro"
 import InsuranceCompanies from "./InsuranceCompanies.astro"
 import ContactSection from './ContactSection.astro'
+import LocationIcon from "../icons/LocationIcon.astro"
+import PhoneIcon from "../icons/PhoneIcon.astro"
+import EnvelopeIcon from "../icons/EnvelopeIcon.astro"
+import ArrowRightIcon from "../icons/ArrowRightIcon.astro"
+import HeartIcon from "../icons/HeartIcon.astro"
 ---
 <main>
     <HeroSection/>
@@ -13,30 +18,29 @@ import ContactSection from './ContactSection.astro'
                 Milí klienti, nově nás najdete na této adrese:
             </p>
             <p class="highlight">
-                📍 Hotel Galatea<br>
                 Pod koupalištěm 881, Kosmonosy
             </p>
         </div>
 
         <div class="section">
-            <p class="highlight">➡️ Hlavní vchod – recepce:</p>
+            <p class="highlight"><span class="icon-line"><ArrowRightIcon /> Vchod vlevo - hotelová recepce:</span></p>
             <p>ordinace Bc. Kateřiny Štěpánkové</p>
 
-            <p class="highlight">➡️ Vedlejší vchod (wellness):</p>
+            <p class="highlight"><span class="icon-line"><ArrowRightIcon /> Vchod vpravo (wellness):</span></p>
             <p>ostatní fyzioterapeuti, elektroléčba, magnetoterapie, laser</p>
         </div>
 
         <div class="section">
-            <p class="highlight">📞 Objednávání:</p>
+            <p class="highlight"><span class="icon-line"><PhoneIcon /> Objednávání:</span></p>
             <p>
-                PO–ST–PÁ | 8:00–12:00<br>
+                PO–PÁ | 8:00–12:00<br>
                 SMS: <a href="tel:+420731205253">+420 731 205 253</a><br>
-                ✉️ <a href="mailto:fyzioterapiepodlipami@gmail.com">fyzioterapiepodlipami@gmail.com</a><br>
+                <span class="icon-line"><EnvelopeIcon /> <a href="mailto:fyzioterapiepodlipami@gmail.com">fyzioterapiepodlipami@gmail.com</a></span><br>
             </p>
         </div>
 
         <p>
-            Těšíme se na vás v nových prostorách 💚<br>
+            <span class="icon-line">Těšíme se na vás v nových prostorách <HeartIcon /></span><br>
             <strong>Fyzioterapie pod lipami</strong>
         </p>
     </div>
@@ -61,6 +65,18 @@ import ContactSection from './ContactSection.astro'
     }
     .section {
         margin-bottom: 8px;
+    }
+    .icon-line {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .icon-line :global(svg) {
+        flex-shrink: 0;
+        color: var(--green-dark);
+    }
+    .icon-line :global(svg[fill="currentColor"]) {
+        color: var(--green-light);
     }
     @media (max-width: 600px) {
         .container {
