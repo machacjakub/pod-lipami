@@ -1,23 +1,129 @@
 ---
-import Home from '../components/home/Home.astro';
 import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import BlobBackground from '../components/BlobBackground.astro';
+import ArrowRightIcon from '../components/icons/ArrowRightIcon.astro';
 ---
 
 <Layout title="Stránka neexistuje">
-    <div>
-        <h2>Stránka neexistuje...</h2>
-    </div>
+    <section class="not-found">
+        <BlobBackground blobs={[
+            { tone: "teal", size: 560, top: "-120px", right: "-160px", duration: 18 },
+            { tone: "salmon", size: 520, bottom: "-140px", left: "-160px", duration: 22, reverse: true },
+            { tone: "mint", size: 420, top: "30%", left: "45%", duration: 26 },
+        ]}/>
+
+        <div class="card glass">
+            <SectionHeading as="h1" size="lg" animate>Stránka neexistuje...</SectionHeading>
+            <a href="/" class="home-link">
+                <span class="link-icon" aria-hidden="true"><ArrowRightIcon/></span>
+                Zpět na úvodní stránku
+            </a>
+        </div>
+    </section>
 </Layout>
 <style>
-    div {
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .not-found {
+        position: relative;
+        overflow: clip;
+        box-sizing: border-box;
+        min-height: min(85vh, 900px);
+        display: grid;
+        place-items: center;
+        padding: 130px clamp(16px, 4vw, 48px) 96px;
+        background: linear-gradient(180deg, white 0%, var(--background-lighter-blue) 20%, var(--background-lighter-blue) 80%, white 100%);
     }
-    h2 {
-        font-size: 2rem;
-        color: var(--salmon-dark);
+
+    .card {
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 640px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px);
+        border-radius: 36px;
+        text-align: center;
+    }
+    .card :global(.section-head) {
+        margin-bottom: clamp(28px, 3vw, 36px);
+    }
+
+    /* Same pill family as ReservationButton, with the arrow pointing back */
+    .home-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        width: fit-content;
+        padding: 14px 28px 14px 16px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--salmon-light), var(--salmon-lighter));
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        color: var(--salmon-darker);
+        font-family: Sofia Sans, sans-serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow:
+            0 12px 28px -10px rgba(212, 133, 106, 0.65),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .link-icon {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.75);
+        transition: transform 0.25s ease;
+    }
+    .link-icon :global(svg) {
+        height: 18px;
+        transform: scaleX(-1);
+    }
+    .home-link:hover {
+        color: var(--salmon-darker);
+        transform: translateY(-2px);
+        box-shadow:
+            0 18px 36px -12px rgba(212, 133, 106, 0.75),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+    .home-link:hover .link-icon {
+        transform: translateX(-3px);
+    }
+    .home-link:focus-visible {
+        outline: 3px solid var(--green-dark);
+        outline-offset: 3px;
+    }
+
+    @media (max-width: 850px) {
+        .not-found {
+            padding: 110px 16px 72px;
+        }
+        .card {
+            border-radius: 28px;
+        }
+    }
+    @media (max-width: 400px) {
+        .card {
+            border-radius: 24px;
+        }
+        .home-link {
+            font-size: 1.1rem;
+            padding: 10px 20px 10px 10px;
+        }
+        .link-icon {
+            width: 32px;
+            height: 32px;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .home-link,
+        .link-icon {
+            transition: none;
+        }
     }
 </style>
