@@ -24,13 +24,16 @@ export const DropdownMenuButton = ({items}) => {
 
     return (
         <div className="dropdown">
-            <button className="dropdown-button" onClick={toggleDropdown}>
+            <button className="dropdown-button" onClick={toggleDropdown} aria-label="Menu" aria-expanded={isOpen}>
                 <MenuIcon/>
             </button>
             <ul className={`dropdown-menu ${isOpen ? 'open' : ''}`}>
-                {items?.map(item => <a style={{textDecoration: "none"}} href={item.path}>{item.label}</a>)}
+                {items?.map(item =>
+                    <li key={item.path}>
+                        <a href={item.path} onClick={() => setIsOpen(false)}>{item.label}</a>
+                    </li>
+                )}
             </ul>
         </div>
     );
 };
-
