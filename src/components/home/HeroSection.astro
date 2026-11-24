@@ -1,160 +1,212 @@
 ---
+import LocationIcon from "../icons/LocationIcon.astro"
+import ReservationButton from "../ReservationButton.astro"
+import BlobBackground from "../BlobBackground.astro"
 ---
 <section id="hero-wrapper">
+    <BlobBackground blobs={[
+        { tone: "teal", size: 620, top: "-120px", right: "-80px", duration: 18 },
+        { tone: "salmon", size: 520, bottom: "0", left: "-120px", duration: 22, reverse: true },
+        { tone: "mint", size: 380, top: "35%", left: "38%", duration: 26 },
+    ]}/>
+
     <div id="hero">
-        <div id="blurred-line"/>
-        <div>
-            <h1>Fyzioterapie Pod Lipami</h1>
-            <h4>Kosmonosy u Mladé Boleslavi</h4>
-            <a href="#kontakt"><button client:only="react" id="reservation-button">Rezervovat termín</button></a>
+        <div class="hero-card glass">
+            <span class="accent-line" aria-hidden="true"/>
+            <h1>Fyzioterapie <span class="h1-accent">Pod Lipami</span></h1>
+            <p class="subtitle"><LocationIcon/> Kosmonosy u Mladé Boleslavi</p>
+            <ReservationButton href="#kontakt"/>
         </div>
-        <img id="hero-image-desktop" width="700" height="400" alt="Fyzioterapie pod Lipami v Kosmonosech – terapeut při ošetření pacienta" src="/new-hero.webp" loading="eager" />
+
+        <div class="hero-media">
+            <span class="stain" aria-hidden="true"/>
+            <div class="photo-frame glass">
+                <picture>
+                    <source media="(min-width: 851px)" srcset="/new-hero.webp" width="1792" height="1195"/>
+                    <img width="900" height="600" alt="Fyzioterapie pod Lipami v Kosmonosech – terapeut při ošetření pacienta" src="/new-hero-mobile.webp" loading="eager" fetchpriority="high" decoding="async"/>
+                </picture>
+            </div>
+        </div>
     </div>
-    <img width="360" height="206" id="hero-image-phone" alt="Fyzioterapie pod Lipami v Kosmonosech – terapeut při ošetření pacienta" src="/new-hero-mobile.webp" loading="eager" decoding="async"/>
 </section>
 <style>
-    h1 {
-        color: var(--green-dark);
-        font-size: 48px;
-        margin-bottom: 16px;
-        margin-right: min(200px, max(20px, calc(60vw - 800px)));
-    }
-    h4 {
-        color: var(--green-light);
-        font-size: 28px;
-        font-weight: normal;
-        margin: 16px auto 32px auto;
-    }
-    button {
-        background-color: var(--salmon-light);
-        padding: 15px 24px;
-        font-family: Sofia Sans, sans-serif;
-        border: none;
-        border-radius: 18px;
-        font-size: 22px;
-        font-weight: 600;
-        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.34);
-        cursor: pointer;
-        color: var(--salmon-darker);
-    }
-    button:hover {
-        box-shadow: 0 0 10px white;
-    }
     #hero-wrapper {
-        height: 700px;
-        display: flex;
-        align-items: center;
-    }
-    #hero {
-        display: flex;
-        width: calc(100vw - 50px);
-        justify-content: space-between;
-        align-items: center;
-        margin: 60px 0 30px 0;
-        background-image: linear-gradient(white, var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), white);
-        padding: 30px 0 30px 50px;
-    }
-    #hero-image-desktop {
-        height: 400px;
-        width: auto;
-        border-radius: 20px 0 0 20px ;
-        border: var(--green-light ) solid;
-        border-width: 10px 0 10px 10px;
-        opacity: 0; /* Initially hidden */
-        animation: fadeInFromTop 1s ease-out forwards;
-    }
-    #hero-image-phone {
-        display: none;
-        animation: fadeInFromTop 1s ease-out forwards;
-    }
-    #blurred-line {
-        width: 20px;
-        height: 420px;
-        margin-right: 40px;
-        background-color: var(--green-light);
-        filter: blur(5px);
-        flex-shrink: 0;
-    }
-    #services {
-        height: 600px;
-        background-color: darkgreen;
-        width: 100vw;
-    }
-    a {
-        all: unset;
+        position: relative;
+        overflow: clip;
+        padding: 130px clamp(16px, 4vw, 48px) 80px;
+        background: linear-gradient(180deg, white 0%, var(--background-lighter-blue) 45%, var(--background-lighter-blue) 70%, white 100%);
     }
 
+    #hero {
+        position: relative;
+        max-width: 1240px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        align-items: center;
+    }
+
+    .hero-card {
+        position: relative;
+        z-index: 2;
+        margin-right: -88px;
+        padding: clamp(28px, 3.5vw, 52px);
+        border-radius: 32px;
+        animation: riseIn 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+    .accent-line {
+        margin-bottom: 24px;
+    }
+    h1 {
+        color: var(--green-dark);
+        font-size: clamp(2.25rem, 1.4rem + 2.6vw, 4rem);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin: 0 0 18px;
+    }
+    .h1-accent {
+        display: block;
+        background: linear-gradient(90deg, var(--green-dark), #2f8f8a);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .subtitle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #2f7f7a;
+        font-size: clamp(1.1rem, 0.9rem + 0.6vw, 1.5rem);
+        margin: 0 0 32px;
+    }
+    .subtitle :global(svg) {
+        height: 1.2em;
+        width: auto;
+        flex-shrink: 0;
+        color: var(--green-light);
+    }
+
+    .hero-media {
+        position: relative;
+    }
+    .stain {
+        position: absolute;
+        width: 360px;
+        height: 300px;
+        top: -110px;
+        right: -110px;
+        background: linear-gradient(135deg, #7cbfd9, #a9d6e6);
+        border-radius: 42% 58% 63% 37% / 45% 38% 62% 55%;
+        filter: blur(42px);
+        opacity: 0.95;
+        animation: wobble 16s ease-in-out infinite alternate;
+    }
+    .photo-frame {
+        position: relative;
+        padding: 12px;
+        border-radius: 40px;
+    }
+    .photo-frame picture {
+        display: block;
+        overflow: hidden;
+        border-radius: 30px;
+    }
+    .photo-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        animation: settle 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
 
     @media (max-width: 1150px) {
         #hero-wrapper {
-            margin-top: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: initial;
-            height: fit-content;
+            padding-top: 110px;
         }
-        #hero-image-desktop {
-            display: none;
+        .hero-card {
+            margin-right: -64px;
         }
-        #hero-image-phone {
-            display: initial;
-            margin: auto;
-            width: 90vw;
-            border-radius: 20px;
-            border: 5px var(--green-light ) solid;
+        .stain {
+            width: 280px;
+            height: 240px;
+            top: -80px;
+            right: -70px;
         }
-        h1 {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
-        h4 {
-            font-size: 22px;
-            margin: 10px auto 20px auto;
-        }
-        button {
-            padding: 12px 18px;
-            font-size: 20px;
+    }
+    @media (max-width: 850px) {
+        #hero-wrapper {
+            padding: 90px 16px 40px;
         }
         #hero {
-            gap: 20px;
-            padding: 30px 10% 30px 5%;
-            justify-content: left;
-            width: calc(100vw - 15%);
+            grid-template-columns: minmax(0, 1fr);
         }
-        #blurred-line {
-            width: calc(10px + 1%);
-            height: 360px;
-            margin-right: 10%;
-            flex-shrink: 0;
+        .hero-media {
+            order: -1;
+        }
+        .hero-card {
+            margin: -44px 12px 0;
+            border-radius: 28px;
+        }
+        .accent-line {
+            margin-bottom: 18px;
+        }
+        .subtitle {
+            margin-bottom: 24px;
+        }
+        .photo-frame {
+            padding: 8px;
+            border-radius: 30px;
+        }
+        .photo-frame picture {
+            border-radius: 22px;
+        }
+        .stain {
+            width: 220px;
+            height: 180px;
+            top: -50px;
+            right: -40px;
+            filter: blur(32px);
         }
     }
     @media (max-width: 400px) {
-        h1 {
-            font-size: 30px;
-        }
-        h4 {
-            font-size: 18px;
-        }
-        button {
-            padding: 10px 16px;
-            font-size: 18px;
-            border-radius: 10px;
+        .hero-card {
+            margin-inline: 6px;
         }
     }
-    @media (min-width: 1800px) {
-        #hero-image-desktop {
-            border-radius: 20px ;
-            border-width: 10px;
-        }
-    }
-    @keyframes fadeInFromTop {
+
+    @keyframes riseIn {
         from {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(16px);
         }
         to {
             opacity: 1;
             transform: translateY(0);
+        }
+    }
+    /* No opacity change: the photo is the LCP element and must paint immediately */
+    @keyframes settle {
+        from {
+            transform: scale(1.04);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+    @keyframes wobble {
+        from {
+            transform: rotate(0deg) scale(1);
+        }
+        to {
+            transform: rotate(25deg) scale(1.12);
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .stain,
+        .hero-card,
+        .photo-frame img {
+            animation: none;
         }
     }
 </style>

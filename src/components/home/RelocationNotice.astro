@@ -1,0 +1,308 @@
+---
+import LocationIcon from "../icons/LocationIcon.astro"
+import PhoneIcon from "../icons/PhoneIcon.astro"
+import EnvelopeIcon from "../icons/EnvelopeIcon.astro"
+import ArrowRightIcon from "../icons/ArrowRightIcon.astro"
+import HeartIcon from "../icons/HeartIcon.astro"
+---
+<section class="notice glass" aria-labelledby="notice-address">
+    <header class="notice-head">
+        <span class="accent-line" aria-hidden="true"/>
+        <p class="notice-lead">Milí klienti, nově nás najdete na této adrese:</p>
+        <h2 id="notice-address">
+            <span class="chip chip-lg" aria-hidden="true"><LocationIcon/></span>
+            <span>Pod koupalištěm 881, Kosmonosy</span>
+        </h2>
+    </header>
+
+    <div class="notice-grid">
+        <div class="tile">
+            <span class="chip chip-flip" aria-hidden="true"><ArrowRightIcon/></span>
+            <h3>Vchod vlevo - hotelová recepce:</h3>
+            <p>ordinace Bc. Kateřiny Štěpánkové</p>
+        </div>
+
+        <div class="tile">
+            <span class="chip" aria-hidden="true"><ArrowRightIcon/></span>
+            <h3>Vchod vpravo (wellness):</h3>
+            <p>ostatní fyzioterapeuti, elektroléčba, magnetoterapie, laser</p>
+        </div>
+
+        <div class="tile tile-contact">
+            <span class="chip chip-salmon" aria-hidden="true"><PhoneIcon/></span>
+            <h3>Objednávání:</h3>
+            <p class="hours">PO–PÁ | 8:00–12:00</p>
+            <div class="contact-links">
+                <p class="contact-row">
+                    <span class="contact-label">SMS:</span>
+                    <a class="contact-link" href="tel:+420731205253">+420 731 205 253</a>
+                </p>
+                <p class="contact-row">
+                    <span class="contact-label contact-label-icon" aria-hidden="true"><EnvelopeIcon/></span>
+                    <a class="contact-link" href="mailto:fyzioterapiepodlipami@gmail.com">fyzioterapiepodlipami@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="notice-foot">
+        <p class="welcome">Těšíme se na vás v nových <span class="nowrap">prostorách <span class="heart" aria-hidden="true"><HeartIcon/></span></span></p>
+        <p class="signature"><strong>Fyzioterapie pod lipami</strong></p>
+    </footer>
+</section>
+<style>
+    .notice {
+        position: relative;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: clamp(28px, 4vw, 56px);
+        border-radius: 36px;
+    }
+
+    .accent-line {
+        margin-bottom: 22px;
+    }
+    .notice-lead {
+        margin: 0 0 14px;
+        color: var(--text-body);
+        font-size: clamp(1.1rem, 0.95rem + 0.45vw, 1.35rem);
+        line-height: 1.5;
+    }
+    h2 {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 0;
+        color: var(--green-dark);
+        font-size: clamp(1.75rem, 1.2rem + 1.7vw, 2.75rem);
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+    }
+
+    /* Soft circular icon chips */
+    .chip {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(178, 219, 229, 0.9), rgba(240, 252, 253, 0.9));
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        color: var(--green-dark);
+    }
+    .chip :global(svg) {
+        width: 22px;
+        height: 22px;
+    }
+    .chip-lg {
+        width: clamp(48px, 3vw + 24px, 60px);
+        height: clamp(48px, 3vw + 24px, 60px);
+    }
+    .chip-lg :global(svg) {
+        width: 55%;
+        height: 55%;
+    }
+    .chip-flip :global(svg) {
+        transform: scaleX(-1);
+    }
+    .chip-salmon {
+        background: linear-gradient(135deg, var(--salmon-light), var(--salmon-lighter));
+        color: var(--salmon-darker);
+    }
+
+    .notice-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        margin-top: clamp(28px, 3vw, 40px);
+    }
+    .tile {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.58);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 16px 36px -26px rgba(5, 94, 105, 0.35);
+    }
+    h3 {
+        margin: 18px 0 8px;
+        color: var(--green-dark);
+        font-size: 1.25rem;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+    }
+    .tile p {
+        margin: 0;
+        color: var(--text-body);
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    .tile .hours {
+        display: inline-block;
+        justify-self: start;
+        margin: 4px 0 14px;
+        padding: 4px 14px;
+        border-radius: 999px;
+        background: var(--background-lighter-blue);
+        border: 1px solid rgba(117, 181, 175, 0.35);
+        color: var(--green-dark);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+    }
+    .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .tile .contact-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 8px;
+        min-width: 0;
+    }
+    .contact-label {
+        color: var(--text-body);
+    }
+    .contact-label-icon {
+        display: inline-flex;
+        color: var(--green-light);
+    }
+    .contact-label-icon :global(svg) {
+        width: 20px;
+        height: 20px;
+    }
+    .contact-link {
+        display: inline;
+        padding: 0;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--green-dark);
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+        text-decoration-color: rgba(117, 181, 175, 0.6);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+        transition: text-decoration-color 0.2s ease;
+    }
+    .contact-link:hover {
+        color: var(--green-dark);
+        text-decoration-color: var(--green-dark);
+    }
+    .contact-link:focus-visible {
+        outline: 3px solid var(--green-dark);
+        outline-offset: 3px;
+        border-radius: 4px;
+    }
+
+    .notice-foot {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 6px 24px;
+        margin-top: clamp(24px, 3vw, 36px);
+        padding-top: clamp(20px, 2.5vw, 28px);
+        border-top: 1px solid rgba(117, 181, 175, 0.3);
+    }
+    .notice-foot p {
+        margin: 0;
+        font-size: 1.15rem;
+        line-height: 1.5;
+    }
+    .welcome {
+        color: var(--text-body);
+    }
+    .nowrap {
+        white-space: nowrap;
+    }
+    .heart {
+        display: inline-flex;
+        margin-left: 4px;
+        vertical-align: -3px;
+        color: var(--salmon-dark);
+    }
+    .heart :global(svg) {
+        width: 20px;
+        height: 20px;
+    }
+    .signature {
+        color: var(--green-dark);
+    }
+
+    @media (max-width: 1150px) {
+        .notice-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .tile-contact {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            column-gap: 24px;
+            align-items: start;
+        }
+        .tile-contact > * {
+            grid-column: 1;
+        }
+        .tile-contact > .contact-links {
+            grid-column: 2;
+            grid-row: 1 / span 3;
+            align-self: end;
+            gap: 10px;
+            padding-bottom: 4px;
+        }
+    }
+    @media (max-width: 850px) {
+        .notice {
+            border-radius: 28px;
+        }
+    }
+    @media (max-width: 600px) {
+        .notice {
+            padding: 26px 18px;
+        }
+        h2 {
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .notice-grid {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 14px;
+        }
+        .tile-contact {
+            display: flex;
+        }
+        .tile-contact > .contact-links {
+            align-self: flex-start;
+            gap: 6px;
+            padding-bottom: 0;
+        }
+        .tile {
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .notice-foot {
+            flex-direction: column;
+        }
+        .tile .contact-row {
+            flex-wrap: nowrap;
+        }
+        .contact-link {
+            font-size: 1rem;
+            min-width: 0;
+        }
+    }
+    @media (max-width: 400px) {
+        .notice {
+            padding: 24px 14px;
+        }
+        .tile {
+            padding: 18px 16px;
+        }
+    }
+</style>

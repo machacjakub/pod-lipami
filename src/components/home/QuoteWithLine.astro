@@ -1,38 +1,59 @@
 ---
 ---
-<blockquote>
-    <div id="line"/>
-    <div id="content">
-        <slot/>
-    </div>
-</blockquote>
+<figure class="statement-panel glass">
+    <span class="mark" aria-hidden="true">&ldquo;</span>
+    <p><slot/></p>
+</figure>
 <style>
-    #line {
-        width: 20px;
-        margin-right: 40px;
-        background-color: var(--salmon-light);
-        filter: blur(5px);
-        flex-shrink: 0;
+    .statement-panel {
+        position: relative;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: start;
+        gap: clamp(18px, 2.5vw, 32px);
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: clamp(26px, 3.5vw, 48px);
+        border-radius: 32px;
     }
-    blockquote {
-        display: flex;
-        gap: 20px;
-        font-size: 20px;
-        color: var(--salmon-dark);
-        margin: 0 auto 50px;
-        line-height: 28px;
-        width: 80%;
-        max-width: 1000px;
+    .mark {
+        display: grid;
+        place-items: center;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--salmon-light), var(--salmon-lighter));
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        color: var(--salmon-darker);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 3.4rem;
+        font-weight: 700;
+        line-height: 1;
+        padding-top: 0.32em;
+        box-sizing: border-box;
+        user-select: none;
     }
-    @media (max-width: 1150px) {
-        blockquote {
-            margin-top: 60px;
-            font-size: 18px;
-            line-height: 25px;
+    p {
+        margin: 0;
+        color: var(--text-body);
+        font-size: clamp(1.1rem, 0.95rem + 0.5vw, 1.35rem);
+        line-height: 1.65;
+    }
+    @media (max-width: 850px) {
+        .statement-panel {
+            border-radius: 28px;
         }
-        #line {
-            width: calc(10px + 1%);
-            margin-right: calc(2px + 4%);
+    }
+    @media (max-width: 600px) {
+        .statement-panel {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 14px;
+            padding: 24px 20px;
+        }
+        .mark {
+            width: 52px;
+            height: 52px;
+            font-size: 2.8rem;
         }
     }
 </style>
