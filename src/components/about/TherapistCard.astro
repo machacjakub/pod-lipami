@@ -1,0 +1,201 @@
+---
+interface Props {
+    therapist: { name: string; bio: string; photo?: string };
+    tone?: "teal" | "salmon";
+    showPhoto?: boolean;
+    index?: number;
+}
+
+const { therapist: { name, bio, photo }, tone = "teal", showPhoto = false, index = 0 } = Astro.props;
+
+// Monogram from the name without academic titles, e.g. "Bc. Kateřina Štěpánková" -> "KŠ"
+const words = name
+    .replace(/,.*$/, "")
+    .split(/\s+/)
+    .filter(word => word && !word.endsWith("."));
+const initials = words.length > 1
+    ? `${words[0][0]}${words[words.length - 1][0]}`
+    : (words[0]?.[0] ?? "");
+
+const withPhoto = showPhoto && Boolean(photo);
+---
+<article class:list={["therapist-card", "glass", `tone-${tone}`, { "rise-in": index < 2 }]} style={`--delay: ${index * 90}ms`}>
+    {withPhoto
+        ? <div class="avatar portrait">
+              <img src={`/therapists/${photo}`} alt={name} width="400" height="480" loading="lazy" decoding="async"/>
+          </div>
+        : <div class="avatar monogram" aria-hidden="true">{initials}</div>}
+    <h2>{name}</h2>
+    <div class="bio">
+        <Fragment set:html={bio}/>
+    </div>
+</article>
+<style>
+    .therapist-card {
+        position: relative;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-areas:
+            "avatar name"
+            "avatar bio";
+        grid-template-rows: auto 1fr;
+        column-gap: clamp(28px, 3.5vw, 48px);
+        row-gap: 16px;
+        padding: clamp(28px, 3.5vw, 48px);
+        border-radius: 32px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    /* Only the cards visible on load get the entrance animation */
+    .rise-in {
+        animation: riseIn 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        animation-delay: var(--delay, 0ms);
+    }
+    .therapist-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+            0 32px 70px -28px rgba(5, 94, 105, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .tone-teal {
+        --tone-from: var(--green-lighter);
+        --tone-to: var(--background-lighter-blue);
+        --tone-ink: var(--green-dark);
+        --tone-glow: rgba(117, 181, 175, 0.55);
+    }
+    .tone-salmon {
+        --tone-from: var(--salmon-light);
+        --tone-to: #fff4f0;
+        --tone-ink: var(--salmon-darker);
+        --tone-glow: rgba(212, 133, 106, 0.45);
+    }
+
+    .avatar {
+        grid-area: avatar;
+        align-self: start;
+    }
+    .monogram {
+        display: grid;
+        place-items: center;
+        width: 112px;
+        height: 112px;
+        flex-shrink: 0;
+        border-radius: 36px;
+        background: linear-gradient(135deg, var(--tone-from), var(--tone-to));
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        box-shadow:
+            0 18px 36px -18px var(--tone-glow),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        color: var(--tone-ink);
+        font-size: 2.4rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1;
+    }
+    .portrait {
+        width: 200px;
+        padding: 8px;
+        border-radius: 32px;
+        background: linear-gradient(135deg, var(--tone-from), var(--tone-to));
+        box-shadow: 0 18px 36px -18px var(--tone-glow);
+    }
+    .portrait img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 5 / 6;
+        object-fit: cover;
+        border-radius: 24px;
+    }
+    h2 {
+        grid-area: name;
+        align-self: center;
+        margin: 0;
+        color: var(--green-dark);
+        font-size: clamp(1.5rem, 1.2rem + 0.8vw, 1.95rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+    }
+
+    .bio {
+        grid-area: bio;
+        color: var(--text-body);
+        font-size: 1.075rem;
+        line-height: 1.65;
+    }
+    .bio :global(p) {
+        margin: 0 0 1em;
+    }
+    .bio :global(div > p:last-child),
+    .bio > :global(p:last-child) {
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 850px) {
+        .therapist-card {
+            grid-template-areas:
+                "avatar name"
+                "bio bio";
+            grid-template-rows: auto auto;
+            column-gap: 18px;
+            row-gap: 22px;
+            border-radius: 28px;
+        }
+        .avatar {
+            align-self: center;
+        }
+        .monogram {
+            width: 72px;
+            height: 72px;
+            border-radius: 24px;
+            font-size: 1.6rem;
+        }
+        .portrait {
+            width: 96px;
+            padding: 5px;
+            border-radius: 24px;
+            flex-shrink: 0;
+        }
+        .portrait img {
+            border-radius: 19px;
+        }
+        .bio {
+            font-size: 1rem;
+        }
+    }
+    @media (max-width: 400px) {
+        .therapist-card {
+            padding: 24px 20px;
+            border-radius: 24px;
+        }
+        .therapist-card {
+            column-gap: 14px;
+        }
+        .monogram {
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            font-size: 1.35rem;
+        }
+    }
+
+    @keyframes riseIn {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .therapist-card {
+            animation: none;
+            transition: none;
+        }
+        .therapist-card:hover {
+            transform: none;
+        }
+    }
+</style>
