@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css'
 import { DropdownMenuButton } from '../components/dropdown/DropdownMenuButton'
 const links = [
 	{ label: "Služby", path: '/#sluzby' },
@@ -56,7 +57,7 @@ const fullTitle = title === brand ? `${brand} | Kosmonosy u Mladé Boleslavi` : 
 		<meta name="twitter:title" content={fullTitle}>
 		<meta name="twitter:description" content={description}>
 		<meta name="twitter:image" content="https://fyziopodlipami.cz/thumbnail.jpg">
-		<meta name="author" content="Jakub Machač">
+		<meta name="author" content="hezkejweb.cz">
 		<title>{fullTitle}</title>
 		<script type="application/ld+json">
 			{
@@ -105,18 +106,31 @@ const fullTitle = title === brand ? `${brand} | Kosmonosy u Mladé Boleslavi` : 
 		<nav>
 			<div id="navigation">
 				<a href="/"><img alt="Fyzioterapie pod Lipami – logo" id="logo" height="54" src="/logo-transparent.webp" loading="eager"/></a>
-				<div class="nav-links">{links.map(link => <a class="link" href={link.path}>{link.label}</a>)}</div>
+				<div class="nav-links">{links.map(link => <a class="link" href={link.path} aria-current={link.path === url.replace(/\/?$/, '/') ? 'page' : undefined}>{link.label}</a>)}</div>
 				<div id="menu"><DropdownMenuButton client:only="react" items={links}/></div>
 			</div>
 		</nav>
+		<script>
+			const navigation = document.getElementById('navigation');
+			const updateNav = () => navigation?.classList.toggle('scrolled', window.scrollY > 8);
+			updateNav();
+			window.addEventListener('scroll', updateNav, { passive: true });
+		</script>
 		<slot />
 	<footer>
-		<div>
-			<p class="p-footer"><b>Helena Mazancová, DiS</b></p>
-			<p class="p-footer"><b>IČO</b> 03211401</p>
+		<div class="footer-card glass">
+			<div class="footer-brand">
+				<img class="footer-logo" src="/logo-transparent.webp" alt="Fyzioterapie pod Lipami – logo" height="48" loading="lazy" decoding="async"/>
+				<div class="footer-owner">
+					<p class="p-footer"><b>Helena Mazancová, DiS</b></p>
+					<p class="p-footer"><b>IČO</b> 03211401</p>
+				</div>
+			</div>
+			<div class="footer-meta">
+				<div>© 2026, Všechna práva vyhrazena</div>
+				<div>Web vytvořil <a href="https://hezkejweb.cz" id="jm">hezkejweb.cz</a></div>
+			</div>
 		</div>
-		<div>© 2025, Všechna práva vyhrazena</div>
-		<div>Web vytvořil <a href="https://www.linkedin.com/in/jakub-machac" id="jm">Jakub Machač</a></div>
 	</footer>
 	</body>
 </html>
@@ -129,17 +143,6 @@ const fullTitle = title === brand ? `${brand} | Kosmonosy u Mladé Boleslavi` : 
 	a:hover {
 		color: var(--green-light);
 	}
-	:root {
-		--green-dark: #055e69;
-		--green-light: #75b5af;
-		--green-lighter: #B2DBE5;
-		--background-light-blue: #e0eaef;
-		--background-lighter-blue: #f0fcfd;
-		--salmon-light: #FFD8CC;
-		--salmon-lighter: #ffe3dc;
-		--salmon-dark: #d4856a;
-		--salmon-darker: #8f543f;
-	}
 	html,
 	body {
 		margin: 0 auto;
@@ -151,52 +154,149 @@ const fullTitle = title === brand ? `${brand} | Kosmonosy u Mladé Boleslavi` : 
 	}
 	nav {
 		position: fixed;
-		top: 0;
-		width: 100%;
+		top: 12px;
+		left: 0;
+		right: 0;
 		z-index: 100;
-		background-color: rgba(255, 255, 255, 0.47);
-		backdrop-filter: blur(10px);
-		max-width: 1800px;
+		padding: 0 clamp(12px, 2vw, 24px);
+		pointer-events: none;
 	}
 	#navigation {
+		pointer-events: auto;
+		max-width: 1240px;
+		margin: 0 auto;
 		display: flex;
-		padding: 6px calc(3vw + 10px) 6px 6px;
 		justify-content: space-between;
-		gap: max(calc(12vw - 80px), 40px);
-		font-size: 24px;
 		align-items: center;
+		gap: 24px;
+		padding: 6px 8px 6px 14px;
+		border-radius: 999px;
+		background: var(--glass-bg);
+		-webkit-backdrop-filter: var(--glass-blur);
+		backdrop-filter: var(--glass-blur);
+		border: 1px solid var(--glass-border);
+		box-shadow: 0 10px 30px -18px rgba(5, 94, 105, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 		color: var(--green-dark);
-		font-weight: 500;
+		transition: box-shadow 0.3s ease, background 0.3s ease;
+	}
+	#navigation.scrolled {
+		background: rgba(255, 255, 255, 0.72);
+		box-shadow: var(--glass-shadow);
+	}
+	@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+		#navigation {
+			background: rgba(255, 255, 255, 0.92);
+		}
 	}
 	#menu {
 		display: none;
 	}
 
 	#logo {
-		padding: 6px;
+		display: block;
+		height: 44px;
+		width: auto;
 		cursor: pointer;
 	}
 	.nav-links {
 		display: flex;
-		gap: 20px;
-		justify-content: space-between;
-		flex: 1;
-		max-width: 800px;
+		gap: 4px;
+		align-items: center;
+	}
+	.link {
+		padding: 10px 18px;
+		border-radius: 999px;
+		font-size: 18px;
+		font-weight: 600;
+		color: var(--green-dark);
+		transition: background-color 0.2s ease, color 0.2s ease;
+	}
+	.link:hover {
+		color: var(--green-dark);
+		background-color: rgba(255, 255, 255, 0.75);
+	}
+	.link[aria-current="page"] {
+		background-color: white;
+		box-shadow: 0 4px 14px -6px rgba(5, 94, 105, 0.3);
+	}
+	.link:focus-visible {
+		outline: 2px solid var(--green-dark);
+		outline-offset: 2px;
 	}
 	footer {
-		background-color: var(--background-light-blue);
-		padding: 20px;
+		position: relative;
+		overflow: clip;
+		padding: 32px clamp(16px, 4vw, 48px) 28px;
+		background:
+			radial-gradient(60% 120% at 8% 115%, rgba(255, 216, 204, 0.75) 0%, rgba(255, 216, 204, 0) 70%),
+			radial-gradient(60% 120% at 92% 115%, rgba(178, 219, 229, 0.85) 0%, rgba(178, 219, 229, 0) 70%),
+			linear-gradient(180deg, white 0%, var(--background-lighter-blue) 70%);
+		color: var(--text-body);
+		font-size: 1rem;
+		line-height: 1.6;
+	}
+	.footer-card {
+		box-sizing: border-box;
+		max-width: 1240px;
+		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		gap: 24px 40px;
+		padding: 20px clamp(20px, 3vw, 36px);
+		border-radius: 28px;
+	}
+	.footer-brand {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		min-width: 0;
+	}
+	.footer-logo {
+		display: block;
+		height: 48px;
+		width: auto;
+		flex-shrink: 0;
+	}
+	.footer-owner {
+		padding-left: 20px;
+		border-left: 1px solid rgba(5, 94, 105, 0.15);
 	}
 	.p-footer {
 		margin: 0;
+		white-space: nowrap;
+	}
+	.p-footer b {
+		color: var(--green-dark);
+	}
+	.footer-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 4px 28px;
+		font-size: 0.95rem;
+		white-space: nowrap;
 	}
 
 	#jm {
-		font-weight: bold;
+		padding: 0;
+		font-size: inherit;
+		font-weight: 700;
 		color: var(--green-dark);
+		text-decoration: underline;
+		text-decoration-color: rgba(5, 94, 105, 0.3);
+		text-underline-offset: 3px;
+		transition: text-decoration-color 0.2s ease;
+	}
+	#jm:hover {
+		color: var(--green-dark);
+		text-decoration-color: currentColor;
+	}
+	#jm:focus-visible {
+		outline: 2px solid var(--green-dark);
+		outline-offset: 2px;
+		border-radius: 4px;
 	}
 
 	@media (max-width: 850px) {
@@ -204,17 +304,52 @@ const fullTitle = title === brand ? `${brand} | Kosmonosy u Mladé Boleslavi` : 
 			display: initial;
 		}
 		#navigation {
-			padding: 6px;
-			gap: 0;
+			padding: 4px 6px 4px 12px;
+		}
+		#logo {
+			height: 40px;
 		}
 		.nav-links {
 			display: none;
 		}
 	}
-	@media (max-width: 600px) {
-		footer{
+	@media (max-width: 850px) {
+		.footer-card {
 			flex-direction: column;
-			gap: 20px;
+			text-align: center;
+			padding: 24px 20px;
+		}
+		.footer-meta {
+			justify-content: center;
+		}
+	}
+	@media (max-width: 600px) {
+		footer {
+			padding: 16px 16px 20px;
+		}
+		.footer-card {
+			gap: 16px;
+			border-radius: 24px;
+		}
+		.footer-brand {
+			flex-direction: column;
+			gap: 12px;
+		}
+		.footer-owner {
+			padding-left: 0;
+			border-left: 0;
+		}
+		.footer-meta {
+			flex-direction: column;
+			gap: 2px;
+			padding-top: 14px;
+			width: 100%;
+			border-top: 1px solid rgba(5, 94, 105, 0.12);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		#jm {
+			transition: none;
 		}
 	}
 </style>

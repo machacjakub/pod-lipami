@@ -1,32 +1,57 @@
 ---
 import {therapists} from './therapists'
-import TherapistLeft from "./TherapistLeft.astro";
-import TherapistRight from "./TherapistRight.astro";
+import TherapistCard from "./TherapistCard.astro";
+import SectionHeading from "../SectionHeading.astro";
+import BlobBackground from "../BlobBackground.astro";
+
+// Therapist photos exist only for some of the team (public/therapists/), so they stay hidden
+// as before. Set to true to show them in place of the monogram where a photo is available.
+const SHOW_PHOTOS = false;
 ---
-<div class="page">
-    <h1>Náš tým</h1>
-    <div>
-        {therapists.map((therapist, i) =>  {
-            if(i%2 === 1) {
-                return <TherapistLeft therapist={therapist}/>
-            }
-            return <TherapistRight therapist={therapist}/>
-        })
-        }
+<section id="tym">
+    <BlobBackground blobs={[
+        { tone: "teal", size: 640, top: "-140px", right: "-180px", duration: 18 },
+        { tone: "salmon", size: 620, top: "22%", left: "-240px", duration: 22, reverse: true },
+        { tone: "mint", size: 700, top: "50%", right: "-260px", duration: 26 },
+        { tone: "salmon", size: 560, bottom: "2%", left: "8%", duration: 24, reverse: true },
+    ]}/>
+
+    <SectionHeading as="h1" animate>Náš tým</SectionHeading>
+
+    <div id="team-list">
+        {therapists.map((therapist, i) =>
+            <TherapistCard therapist={therapist} tone={i % 2 === 0 ? "teal" : "salmon"} showPhoto={SHOW_PHOTOS} index={i}/>
+        )}
     </div>
-</div>
+</section>
 <style>
-    .page {
-        min-height: 100vh;
-        margin: 80px auto;
-        max-width: 1500px;
-        padding: 0 0 100px 0 ;
-        background-image: linear-gradient(var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), white);
+    #tym {
+        position: relative;
+        overflow: clip;
+        padding: 130px clamp(16px, 4vw, 48px) 120px;
+        background: linear-gradient(180deg, white 0%, var(--background-lighter-blue) 12%, var(--background-lighter-blue) 88%, white 100%);
     }
-    h1 {
-        color: var(--green-dark);
-        text-align: center;
-        background-image: linear-gradient(white, var(--background-light-blue));
-        padding-top: 60px;
+
+    #team-list {
+        position: relative;
+        max-width: 1080px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    @media (max-width: 1150px) {
+        #tym {
+            padding-top: 120px;
+        }
+    }
+    @media (max-width: 850px) {
+        #tym {
+            padding: 110px 16px 80px;
+        }
+        #team-list {
+            gap: 20px;
+        }
     }
 </style>

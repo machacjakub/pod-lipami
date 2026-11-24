@@ -1,48 +1,54 @@
 ---
-import ServiceLeft from "./ServiceLeft.astro";
+import ServiceCard from "./ServiceCard.astro";
 import {services} from './services'
-import ServiceRight from "./ServiceRight.astro";
+import SectionHeading from "../SectionHeading.astro";
+import BlobBackground from "../BlobBackground.astro";
 ---
 <section id="sluzby">
-    <div id="heading-background">
-        <h2>Naše služby</h2>
-    </div>
+    <BlobBackground animated={false} blobs={[
+        { tone: "salmon", size: 640, top: "12%", left: "-220px" },
+        { tone: "teal", size: 700, top: "38%", right: "-260px" },
+        { tone: "mint", size: 560, bottom: "4%", left: "30%" },
+    ]}/>
+
+    <SectionHeading>Naše služby</SectionHeading>
     <div id="services-list">
-        {services.map((service, i) =>  {
-            if(i%2 === 1) {
-                return <ServiceRight image={service.image} title={service.title} text={service.text} path={service.path} />
-            }
-            return <ServiceLeft image={service.image} title={service.title} text={service.text} path={service.path} />
-            })
-        }
+        {services.map(service =>
+            <ServiceCard image={service.image} title={service.title} text={service.text} path={service.path} />
+        )}
     </div>
 </section>
 <style>
-    #services {
-        width: 100vw;
+    #sluzby {
+        position: relative;
+        overflow: clip;
+        padding: 72px clamp(16px, 4vw, 48px) 72px;
+        background: linear-gradient(180deg, white 0%, var(--background-lighter-blue) 20%, var(--background-lighter-blue) 80%, white 100%);
     }
-    h2 {
-        text-align: center;
-        font-size: 28px;
-        color: var(--green-dark);
-    }
-    #heading-background{
-        width: 100%;
-        padding: 80px 0 120px;
-        background-color: var(--background-light-blue);
-        box-shadow: inset white -80px 0 50px 50px;
-    }
+
     #services-list {
         position: relative;
-        bottom: 72px;
-        display: flex;
-        flex-direction: column;
-        gap: 60px;
+        max-width: 1240px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px;
     }
+
     @media (max-width: 1150px) {
         #services-list {
-            gap: 116px;
-            margin-top: 40px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+    }
+    @media (max-width: 700px) {
+        #sluzby {
+            padding: 56px 16px 56px;
+        }
+        #services-list {
+            grid-template-columns: minmax(0, 1fr);
+            max-width: 560px;
+            gap: 20px;
         }
     }
 </style>

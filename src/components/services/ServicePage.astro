@@ -1,0 +1,294 @@
+---
+/*
+ * Shared shell for the service detail pages (/sluzby/*):
+ * back link, hero card with the page title and booking CTA, the service photo,
+ * an optional intro card (slot "intro") and the accordions (default slot).
+ */
+import { services } from "../home/services.js";
+import ReservationButton from "../ReservationButton.astro";
+import BlobBackground from "../BlobBackground.astro";
+import ArrowRightIcon from "../icons/ArrowRightIcon.astro";
+
+interface Props {
+    /** Page heading (h1) */
+    title: string;
+    /** Service path as in services.js, e.g. "fyzioterapie" */
+    path: string;
+}
+
+const { title, path } = Astro.props;
+const service = services.find(item => item.path === path);
+const hasIntro = Astro.slots.has("intro");
+const hasBody = Astro.slots.has("default");
+---
+<section class="service-page">
+    <BlobBackground blobs={[
+        { tone: "teal", size: 620, top: "-140px", right: "-140px", duration: 18 },
+        { tone: "salmon", size: 560, top: "26%", left: "-240px", duration: 22, reverse: true },
+        { tone: "mint", size: 640, bottom: "8%", right: "-260px", duration: 26 },
+    ]}/>
+
+    <div class="service-inner">
+        <a href="/#sluzby" class="back-link">
+            <span class="back-icon" aria-hidden="true"><ArrowRightIcon/></span>
+            Všechny služby
+        </a>
+
+        <header class:list={["service-hero", { "no-media": !service }]}>
+            <div class="hero-card glass">
+                <span class="accent-line" aria-hidden="true"/>
+                <h1>{title}</h1>
+                <ReservationButton/>
+            </div>
+            {service &&
+                <div class="hero-media">
+                    <div class="photo-frame glass">
+                        <img src={service.image} alt={`${service.title} – ilustrační obrázek`} width="600" height="400" loading="eager" fetchpriority="high" decoding="async"/>
+                    </div>
+                </div>}
+        </header>
+
+        <div class="service-body">
+            {hasIntro &&
+                <div class="intro-card glass">
+                    <slot name="intro"/>
+                </div>}
+            {hasBody &&
+                <div class="accordion-list">
+                    <slot/>
+                </div>}
+
+            <div class="service-actions">
+                <ReservationButton/>
+                <a href="/#sluzby" class="back-link">
+                    <span class="back-icon" aria-hidden="true"><ArrowRightIcon/></span>
+                    Všechny služby
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .service-page {
+        position: relative;
+        overflow: clip;
+        padding: 124px clamp(16px, 4vw, 48px) 110px;
+        background: linear-gradient(180deg, white 0%, var(--background-lighter-blue) 14%, var(--background-lighter-blue) 86%, white 100%);
+    }
+    .service-inner {
+        position: relative;
+        max-width: 1120px;
+        margin: 0 auto;
+    }
+
+    /* Back link: small glass pill */
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        padding: 6px 18px 6px 6px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid var(--glass-border);
+        color: var(--green-dark);
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+    }
+    .back-icon {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--green-lighter);
+        transition: transform 0.25s ease;
+    }
+    .back-icon :global(svg) {
+        height: 16px;
+        transform: rotate(180deg);
+    }
+    .back-link:hover {
+        color: var(--green-dark);
+        background: rgba(255, 255, 255, 0.9);
+    }
+    .back-link:hover .back-icon {
+        transform: translateX(-3px);
+    }
+    .back-link:focus-visible {
+        outline: 3px solid var(--green-dark);
+        outline-offset: 3px;
+    }
+
+    /* Hero: glass title card overlapping the service photo */
+    .service-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        align-items: center;
+        margin: 24px 0 clamp(48px, 6vw, 80px);
+    }
+    .service-hero.no-media {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .hero-card {
+        position: relative;
+        z-index: 2;
+        margin-right: -72px;
+        padding: clamp(28px, 3.5vw, 48px);
+        border-radius: 32px;
+        animation: riseIn 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+    .no-media .hero-card {
+        margin-right: 0;
+    }
+    .hero-card .accent-line {
+        margin-bottom: 22px;
+    }
+    h1 {
+        margin: 0 0 28px;
+        color: var(--green-dark);
+        font-size: clamp(2.1rem, 1.3rem + 2.1vw, 3.4rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        overflow-wrap: break-word;
+        text-wrap: balance;
+    }
+    .photo-frame {
+        padding: 12px;
+        border-radius: 40px;
+    }
+    .photo-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        border-radius: 30px;
+    }
+
+    /* Reading column */
+    .service-body {
+        max-width: 940px;
+        margin: 0 auto;
+        color: var(--text-body);
+        font-size: 1.0625rem;
+        line-height: 1.65;
+    }
+    .intro-card {
+        padding: clamp(24px, 3.5vw, 44px);
+        border-radius: 32px;
+        font-size: 1.125rem;
+    }
+    .intro-card :global(p) {
+        margin: 0 0 1em;
+    }
+    .intro-card :global(p:last-child) {
+        margin-bottom: 0;
+    }
+    .intro-card :global(:is(b, strong)) {
+        color: var(--green-dark);
+    }
+    .intro-card + .accordion-list {
+        margin-top: 28px;
+    }
+    .accordion-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .service-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px 24px;
+        margin-top: clamp(40px, 5vw, 64px);
+    }
+
+    @media (max-width: 1150px) {
+        .service-page {
+            padding-top: 116px;
+        }
+        .hero-card {
+            margin-right: -56px;
+        }
+    }
+    @media (max-width: 850px) {
+        .service-page {
+            padding: 104px 16px 80px;
+        }
+        .service-hero {
+            grid-template-columns: minmax(0, 1fr);
+            margin: 20px 0 40px;
+        }
+        .hero-media {
+            order: -1;
+        }
+        .hero-card {
+            margin: -44px 12px 0;
+            border-radius: 28px;
+        }
+        .no-media .hero-card {
+            margin: 0;
+        }
+        .hero-card .accent-line {
+            margin-bottom: 18px;
+        }
+        h1 {
+            margin-bottom: 22px;
+        }
+        .photo-frame {
+            padding: 8px;
+            border-radius: 30px;
+        }
+        .photo-frame img {
+            border-radius: 22px;
+        }
+        .service-body {
+            font-size: 1rem;
+        }
+        .intro-card {
+            border-radius: 28px;
+            font-size: 1.0625rem;
+        }
+        .intro-card + .accordion-list {
+            margin-top: 20px;
+        }
+        .accordion-list {
+            gap: 12px;
+        }
+    }
+    @media (max-width: 400px) {
+        .hero-card {
+            margin-inline: 6px;
+            padding: 24px 20px;
+        }
+        .intro-card {
+            padding: 22px 20px;
+            border-radius: 24px;
+        }
+    }
+
+    @keyframes riseIn {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .hero-card {
+            animation: none;
+        }
+        .back-link,
+        .back-icon {
+            transition: none;
+        }
+    }
+</style>

@@ -1,0 +1,47 @@
+/* Site-wide design tokens and a few shared utilities. Imported once by Layout.astro. */
+:root {
+    --green-dark: #055e69;
+    --green-light: #75b5af;
+    --green-lighter: #B2DBE5;
+    --background-light-blue: #e0eaef;
+    --background-lighter-blue: #f0fcfd;
+    --salmon-light: #FFD8CC;
+    --salmon-lighter: #ffe3dc;
+    --salmon-dark: #d4856a;
+    --salmon-darker: #8f543f;
+    --text-body: #34474b;
+    --accent-gradient: linear-gradient(90deg, var(--green-dark), var(--green-light));
+    --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.28));
+    --glass-border: rgba(255, 255, 255, 0.75);
+    --glass-blur: blur(18px) saturate(160%);
+    --glass-shadow: 0 24px 60px -24px rgba(5, 94, 105, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* In-text links; components style their own links on top of this */
+a {
+    color: var(--green-dark);
+    text-underline-offset: 3px;
+}
+
+/* Frosted-glass surface. Components set radius and padding themselves. */
+.glass {
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass {
+        background: rgba(255, 255, 255, 0.88);
+    }
+}
+
+/* Short gradient pill above headings */
+.accent-line {
+    display: block;
+    width: 56px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--accent-gradient);
+}

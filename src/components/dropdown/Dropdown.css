@@ -4,76 +4,68 @@
 }
 
 .dropdown-button {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
     background-color: transparent;
-    color: black;
-    padding: 10px 15px;
+    color: var(--green-dark);
+    padding: 0;
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.dropdown-button:hover {
-    background-color: var(--salmon-light);
+.dropdown-button:hover,
+.dropdown-button[aria-expanded="true"] {
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .dropdown-menu {
     position: absolute;
     right: 0;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
+    top: calc(100% + 14px);
+    /* Nested inside the blurred navbar, so backdrop-filter would not reach the page — keep the panel opaque */
+    background: linear-gradient(160deg, #ffffff, var(--background-lighter-blue));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    padding: 8px;
     list-style: none;
     margin: 0;
-    border-radius: 5px;
-    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-radius: 24px;
+    min-width: 220px;
     z-index: 1000;
 
     /* Animation defaults */
     opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top right;
+    transition: opacity 0.25s ease, transform 0.25s ease;
     pointer-events: none; /* Prevent interaction when hidden */
 }
 
 .dropdown-menu.open {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     pointer-events: auto; /* Enable interaction when visible */
 }
 
-.dropdown-menu li {
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-.dropdown-menu li:hover {
-    background-color: var(--background-lighter-blue);
-}
-
-a {
-    all: unset;
-    color: var(--green-dark);
+.dropdown-menu a {
+    display: block;
     text-decoration: none;
-    cursor: pointer;
-    font-size: 20px;
-    padding: 8px 20px;
-}
-a:hover {
-    color: var(--green-light);
-}
-
-ul {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--green-dark);
+    transition: background-color 0.2s ease;
 }
 
-@media (max-width: 1150px) {
-    .dropdown-button {
-        display: initial;
-    }
-    .dropdown-button:hover {
-        background-color: var(--salmon-light);
-    }
+.dropdown-menu a:hover {
+    color: var(--green-dark);
+    background-color: var(--background-lighter-blue);
 }

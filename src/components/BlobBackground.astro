@@ -1,0 +1,89 @@
+---
+/*
+ * Soft, blurred colour shapes that sit behind glass surfaces.
+ * Place it as the first child of a section with `position: relative; overflow: clip`,
+ * and give the section's content `position: relative` so it stacks above the shapes.
+ * Sizes are desktop pixels; below 850px every shape shrinks to about two thirds.
+ */
+type Tone = "teal" | "salmon" | "mint";
+
+interface Blob {
+    tone: Tone;
+    size: number;
+    top?: string;
+    right?: string;
+    bottom?: string;
+    left?: string;
+    /** Drift duration in seconds */
+    duration?: number;
+    reverse?: boolean;
+}
+
+interface Props {
+    blobs: Blob[];
+    animated?: boolean;
+}
+
+const { blobs, animated = true } = Astro.props;
+
+const styleFor = (blob: Blob) => [
+    `--size: ${blob.size}px`,
+    `--duration: ${blob.duration ?? 20}s`,
+    blob.top && `top: ${blob.top}`,
+    blob.right && `right: ${blob.right}`,
+    blob.bottom && `bottom: ${blob.bottom}`,
+    blob.left && `left: ${blob.left}`,
+].filter(Boolean).join("; ");
+---
+{blobs.map(blob =>
+    <div
+        class:list={["blob", `tone-${blob.tone}`, { animated, reverse: blob.reverse }]}
+        style={styleFor(blob)}
+        aria-hidden="true"
+    />
+)}
+<style>
+    .blob {
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+    .tone-teal {
+        background: radial-gradient(circle, var(--green-lighter) 0%, rgba(178, 219, 229, 0) 68%);
+    }
+    .tone-salmon {
+        background: radial-gradient(circle, var(--salmon-light) 0%, rgba(255, 216, 204, 0) 68%);
+    }
+    .tone-mint {
+        background: radial-gradient(circle, rgba(117, 181, 175, 0.45) 0%, rgba(117, 181, 175, 0) 68%);
+    }
+    .animated {
+        animation: drift var(--duration) ease-in-out infinite alternate;
+    }
+    .animated.reverse {
+        animation-direction: alternate-reverse;
+    }
+
+    @media (max-width: 850px) {
+        .blob {
+            width: calc(var(--size) * 0.66);
+            height: calc(var(--size) * 0.66);
+        }
+    }
+
+    @keyframes drift {
+        from {
+            transform: translate(0, 0) scale(1);
+        }
+        to {
+            transform: translate(40px, -30px) scale(1.08);
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .animated {
+            animation: none;
+        }
+    }
+</style>

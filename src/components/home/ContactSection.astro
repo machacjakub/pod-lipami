@@ -2,44 +2,67 @@
 import EnvelopeIcon from "../icons/EnvelopeIcon.astro";
 import PhoneIcon from "../icons/PhoneIcon.astro";
 import LocationIcon from "../icons/LocationIcon.astro";
+import BlobBackground from "../BlobBackground.astro";
 ---
 <section id="kontakt">
-    <div class="contact-info">
-        <h2>Kontakt</h2>
-        <p class="description">Napište nám co Vás trápí nebo rovnou poptejte volný termín.</p>
-        <div class="info-list">
-            <div class="info-item"><EnvelopeIcon/><span>fyzioterapiepodlipami@gmail.com</span></div>
-            <div class="info-item"><PhoneIcon/><span>+420 731 205 253</span></div>
-            <div class="info-item"><LocationIcon/><span>Hotel Galatea<br>Pod koupalištěm 881<br>Kosmonosy</span></div>
-        </div>
-        <div>
-            <h3>Ordinační hodiny</h3>
-            <b>Pondělí - Pátek</b>
-            <p>7:00 - 15:00</p>
-            <p>Odpolední termíny (po 15h) dle objednání</p>
-        </div>
-        <div>
-            <h3>Objednávání</h3>
-            <b>Pondělí, Středa, Pátek</b>
-            <p>8:00 - 12:00</p>
-        </div>
-    </div>
-    <div class="contact-form">
-        <h2 class="center">Napište nám</h2>
-        <form method="POST" id="form">
-            <input type="hidden" name="access_key" value="4f41033e-d528-44f2-8b24-348049446626">
-            <label for="input-name">Jméno</label>
-            <input id="input-name" type="text" name="name" required/>
-            <label for="input-email">Email</label>
-            <input id="input-email" type="email" name="email" required/>
-            <label for="input-message">Zpráva</label>
-            <textarea id="input-message" name="message" required/>
-            <div class="gdpr-wrapper">
-                <input id="input-gdpr" type="checkbox" name="gdpr" required />
-                <div> <label for="input-gdpr">Odesláním formuláře souhlasím se</label> <a target="_blank" href="/GDPR_Pod_Lipami.pdf">zpracováním osobních údajů</a>.</div>
+    <BlobBackground animated={false} blobs={[
+        { tone: "teal", size: 680, top: "6%", right: "-240px" },
+        { tone: "salmon", size: 620, top: "20%", left: "-200px" },
+        { tone: "mint", size: 460, bottom: "4%", left: "40%" },
+    ]}/>
+
+    <div class="contact-grid">
+        <div class="contact-info glass">
+            <span class="accent-line" aria-hidden="true"/>
+            <h2>Kontakt</h2>
+            <p class="description">Napište nám co Vás trápí nebo rovnou poptejte volný termín.</p>
+            <div class="info-list">
+                <div class="info-item">
+                    <span class="info-icon"><EnvelopeIcon/></span>
+                    <a class="info-link" href="mailto:fyzioterapiepodlipami@gmail.com">fyzioterapiepodlipami@gmail.com</a>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon"><PhoneIcon/></span>
+                    <a class="info-link" href="tel:+420731205253">+420 731 205 253</a>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon"><LocationIcon/></span>
+                    <span>Hotel Galatea<br>Pod koupalištěm 881<br>Kosmonosy</span>
+                </div>
             </div>
-            <button id="result" type="submit">Odeslat</button>
-        </form>
+            <div class="hours">
+                <div class="hours-tile">
+                    <h3>Ordinační hodiny</h3>
+                    <b>Pondělí - Pátek</b>
+                    <p class="time">7:00 - 15:00</p>
+                    <p class="note">Odpolední termíny (po 15h) dle objednání</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form glass">
+            <h2>Napište nám</h2>
+            <form method="POST" id="form">
+                <input type="hidden" name="access_key" value="4f41033e-d528-44f2-8b24-348049446626">
+                <div class="field">
+                    <label for="input-name">Jméno</label>
+                    <input id="input-name" type="text" name="name" autocomplete="name" required/>
+                </div>
+                <div class="field">
+                    <label for="input-email">Email</label>
+                    <input id="input-email" type="email" name="email" autocomplete="email" required/>
+                </div>
+                <div class="field">
+                    <label for="input-message">Zpráva</label>
+                    <textarea id="input-message" name="message" rows="6" required/>
+                </div>
+                <div class="gdpr-wrapper">
+                    <input id="input-gdpr" type="checkbox" name="gdpr" required />
+                    <div> <label for="input-gdpr">Odesláním formuláře souhlasím se</label> <a class="gdpr-link" target="_blank" rel="noopener" href="/GDPR_Pod_Lipami.pdf">zpracováním osobních údajů</a>.</div>
+                </div>
+                <button id="result" type="submit">Odeslat</button>
+            </form>
+        </div>
     </div>
 </section>
 <script is:inline>
@@ -88,181 +111,352 @@ import LocationIcon from "../icons/LocationIcon.astro";
     });
 </script>
 <style>
+    #kontakt {
+        --text: var(--text-body);
+        --field-border: rgba(5, 94, 105, 0.16);
+        position: relative;
+        overflow: clip;
+        scroll-margin-top: 72px;
+        padding: 48px clamp(16px, 4vw, 48px) 96px;
+        background: linear-gradient(180deg, white 0%, var(--background-lighter-blue) 18%, var(--background-lighter-blue) 82%, white 100%);
+        color: var(--text);
+    }
+
+    .contact-grid {
+        position: relative;
+        max-width: 1240px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        gap: 28px;
+        align-items: stretch;
+    }
+
+    .contact-info,
+    .contact-form {
+        border-radius: 32px;
+        padding: clamp(28px, 3.5vw, 48px);
+    }
+    /* Warm salmon tint sets the info card apart from the form */
+    .contact-info {
+        background: linear-gradient(150deg, rgba(255, 227, 220, 0.85), rgba(255, 255, 255, 0.4));
+    }
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        .contact-info {
+            background: rgba(255, 236, 231, 0.92);
+        }
+    }
+
+    .accent-line {
+        margin-bottom: 20px;
+    }
+    h2 {
+        margin: 0;
+        color: var(--green-dark);
+        font-size: clamp(2rem, 1.4rem + 1.8vw, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+    }
+    .contact-form h2 {
+        font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.25rem);
+        margin-bottom: 24px;
+    }
     p {
         margin: 0;
     }
-    h2 {
-        font-size: 26px;
-        padding: 0;
-        margin: 0;
-        font-weight: normal;
-    }
-    h3 {
-        font-size: 20px;
-        font-weight: normal;
-        margin: 24px 0 10px;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        margin-top: 30px;
-    }
-    label {
-        font-size: 14px;
-        margin: 15px 0 5px;
-    }
-    input {
-        min-width: 100px;
-        max-width: 300px;
-        height: 32px;
-        border-radius: 3px;
-        border: none;
-        box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.25);
-        font-family: Sofia Sans, sans-serif;
-        padding-left: 8px;
+    .description {
+        margin-top: 12px;
+        max-width: 34ch;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: var(--salmon-darker);
     }
 
-    .gdpr-wrapper {
-        margin: 10px 0 0;
-        display: flex;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .gdpr-wrapper a {
-        font-size: 14px !important;
-        padding: 0;
-    }
-
-    .gdpr-wrapper label {
-        margin: 0;
-        font-size: 14px;
-    }
-
-    #input-gdpr {
-        min-width: 20px;
-        height: 20px;
-        accent-color: var(--green-light);
-    }
-    textarea {
-        width: min(60vw, 400px);
-        height: 200px;
-        border-radius: 3px;
-        border: none;
-        box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.25);
-        font-family: Sofia Sans, sans-serif;
-        padding: 8px;
-    }
-    button {
-        cursor: pointer;
-        padding: 8px 20px;
-        font-size: 18px;
-        background-color: var(--salmon-light);
-        font-family: Sofia Sans, sans-serif;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
-        width: fit-content;
-        color: black;
-        margin: 30px 0 0;
-    }
-    button:hover {
-        box-shadow: 0 0 10px white;
-    }
-    #kontakt {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 100px;
-        background-image: linear-gradient(white, var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), white);
-    }
-    .contact-info {
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-        padding: 50px 102px 62px 80px;
-        background-color: var(--salmon-light);
-        border: solid var(--salmon-dark);
-        border-width: 4px 0 4px 4px;
-        height: min-content;
-        border-radius: 50px 0 0 50px;
-    }
-    .contact-form {
-        background-color: var(--green-lighter);
-        box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.3);
-        border-radius: 50px;
-        padding: 60px;
-    }
-    .center {
-        text-align: center;
-    }
     .info-list {
-        margin-top: 10px;
         display: flex;
         flex-direction: column;
-        gap: 20px
+        gap: 14px;
+        margin-top: 28px;
     }
     .info-item {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 14px;
+        font-size: 1.05rem;
+        line-height: 1.45;
+        color: var(--text);
+        min-width: 0;
     }
-    .description {
-        font-size: 18px;
+    .info-icon {
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--green-dark);
+        box-shadow: 0 6px 16px -10px rgba(5, 94, 105, 0.5);
+    }
+    .info-icon :global(svg) {
+        height: 21px;
+        width: auto;
+    }
+    .info-link {
+        padding: 0;
+        font-size: inherit;
+        color: var(--green-dark);
+        font-weight: 600;
+        overflow-wrap: break-word;
+        min-width: 0;
+        cursor: pointer;
+        border-radius: 6px;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s ease;
+    }
+    .info-link:hover {
+        color: var(--green-dark);
+        text-decoration-color: currentColor;
+    }
+    .info-link:focus-visible {
+        outline: 2px solid var(--green-dark);
+        outline-offset: 3px;
+    }
+
+    .hours {
+        margin-top: 32px;
+    }
+    .hours-tile {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 18px 20px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+    h3 {
+        margin: 0 0 8px;
+        color: var(--green-dark);
+        font-size: 1.15rem;
+        letter-spacing: -0.01em;
+    }
+    .hours-tile b {
+        color: var(--text);
+        font-weight: 600;
+    }
+    .time {
+        color: var(--green-dark);
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+    .note {
+        font-size: 0.92rem;
+        line-height: 1.45;
+        color: var(--text);
+    }
+
+    /* Form */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    label {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text);
+    }
+    input:not([type="checkbox"]),
+    textarea {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 13px 16px;
+        border-radius: 14px;
+        border: 1px solid var(--field-border);
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: inset 0 1px 2px rgba(5, 94, 105, 0.06);
+        font-family: Sofia Sans, sans-serif;
+        font-size: 1rem;
+        color: var(--text);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+    textarea {
+        min-height: 160px;
+        resize: vertical;
+        line-height: 1.5;
+    }
+    input:not([type="checkbox"]):hover,
+    textarea:hover {
+        border-color: rgba(5, 94, 105, 0.32);
+    }
+    input:not([type="checkbox"]):focus,
+    textarea:focus {
+        outline: none;
+        background: white;
+        border-color: var(--green-dark);
+        box-shadow: 0 0 0 4px rgba(5, 94, 105, 0.16);
+    }
+
+    .gdpr-wrapper {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--text);
+    }
+    .gdpr-wrapper label {
+        font-weight: 400;
+        font-size: inherit;
+        cursor: pointer;
+    }
+    #input-gdpr {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        margin: 1px 0 0;
+        accent-color: var(--green-dark);
+        cursor: pointer;
+    }
+    #input-gdpr:focus-visible {
+        outline: 2px solid var(--green-dark);
+        outline-offset: 2px;
+    }
+    .gdpr-link {
+        padding: 0;
+        font-size: inherit;
+        font-weight: 600;
+        color: var(--green-dark);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+    }
+    .gdpr-link:hover {
+        color: var(--green-dark);
+        text-decoration-thickness: 2px;
+    }
+    .gdpr-link:focus-visible {
+        outline: 2px solid var(--green-dark);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+
+    /* Submit: same family as ReservationButton. Text-only content + ::after arrow,
+       because the inline script rewrites the button's innerHTML and backgroundColor. */
+    #result {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        width: fit-content;
+        margin-top: 6px;
+        padding: 12px 12px 12px 28px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        background-color: var(--salmon-light);
+        background-image: linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
         color: var(--salmon-darker);
-        width: 240px;
+        font-family: Sofia Sans, sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow:
+            0 12px 28px -10px rgba(212, 133, 106, 0.65),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
     }
-    @media (max-width: 1000px) {
+    #result::after {
+        content: "";
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238f543f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3'/%3E%3C/svg%3E") center / 18px no-repeat,
+            rgba(255, 255, 255, 0.75);
+        transition: transform 0.25s ease;
+    }
+    #result:hover {
+        transform: translateY(-2px);
+        box-shadow:
+            0 18px 36px -12px rgba(212, 133, 106, 0.75),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+    #result:hover::after {
+        transform: translateX(3px);
+    }
+    #result:focus-visible {
+        outline: 3px solid var(--green-dark);
+        outline-offset: 3px;
+    }
+    /* Success state set by the script (backgroundColor #64c27a): keep the label readable */
+    #result[style*="100, 194, 122"] {
+        color: #0e3b22;
+    }
+
+    @media (max-width: 1150px) {
+        .contact-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+    }
+    @media (max-width: 850px) {
         #kontakt {
-            flex-direction: column;
+            padding: 32px 16px 64px;
         }
-        .contact-info {
-            padding: 40px 40px 58px;
-            background-color: var(--salmon-light);
-            border: solid var(--salmon-dark);
-            border-radius: 40px 40px 0 0;
-            border-width: 4px 4px 0 4px;
+        .contact-grid {
+            grid-template-columns: minmax(0, 1fr);
+            max-width: 640px;
+            gap: 20px;
         }
+        .contact-info,
         .contact-form {
-            position: relative;
-            bottom: 16px;
-            padding: 40px;
-            width: min(70vw, 500px);
-            border-radius: 40px;
+            border-radius: 28px;
+        }
+    }
+    @media (max-width: 600px) {
+        .contact-info,
+        .contact-form {
+            padding: 28px 22px;
         }
         .info-item {
-            font-size: 14px;
-        }
-        input {
-            min-width: 100px;
-            max-width: 300px;
-        }
-        textarea {
-            width: initial;
-        }
-        h2 {
-            font-size: 22px;
-        }
-        label {
-            font-size: 12px;
-        }
-        .description {
-            font-size: 15px;
-            color: var(--salmon-darker);
-            width: min(50vw, 360px);
-            min-width: 180px;
+            font-size: 1rem;
         }
     }
-    @media (max-width: 350px) {
+    @media (max-width: 400px) {
+        .contact-info,
         .contact-form {
-            padding: 30px 5vw;
-            width: 90vw;
-            border-radius: 20px;
+            padding: 24px 18px;
+            border-radius: 24px;
         }
-        .contact-info {
-            width: 80vw;
-            padding: 15px 5vw 40px 5vw;
-            border-radius: 20px 20px 0 0;
+        .info-icon {
+            width: 40px;
+            height: 40px;
+        }
+        #result {
+            font-size: 1.1rem;
+            padding: 10px 10px 10px 22px;
+        }
+        #result::after {
+            width: 32px;
+            height: 32px;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        #result,
+        #result::after,
+        .info-link,
+        input,
+        textarea {
+            transition: none;
         }
     }
 </style>

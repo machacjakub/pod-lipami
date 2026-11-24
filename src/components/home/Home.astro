@@ -1,86 +1,74 @@
 ---
 import HeroSection from "./HeroSection.astro"
+import RelocationNotice from "./RelocationNotice.astro"
 import Quote from "./Quote.astro"
+import QuoteWithLine from "./QuoteWithLine.astro"
 import ServicesSection from "./ServicesSection.astro"
 import InsuranceCompanies from "./InsuranceCompanies.astro"
 import ContactSection from './ContactSection.astro'
-import LocationIcon from "../icons/LocationIcon.astro"
-import PhoneIcon from "../icons/PhoneIcon.astro"
-import EnvelopeIcon from "../icons/EnvelopeIcon.astro"
-import ArrowRightIcon from "../icons/ArrowRightIcon.astro"
-import HeartIcon from "../icons/HeartIcon.astro"
+import BlobBackground from "../BlobBackground.astro"
 ---
 <main>
     <HeroSection/>
-    <div class="container">
-        <div class="section">
-            <p>
-                Milí klienti, nově nás najdete na této adrese:
-            </p>
-            <p class="highlight">
-                Pod koupalištěm 881, Kosmonosy
-            </p>
+    <div id="intro">
+        <BlobBackground blobs={[
+            { tone: "salmon", size: 600, top: "2%", left: "-200px" },
+            { tone: "teal", size: 680, top: "8%", right: "-240px", duration: 24, reverse: true },
+            { tone: "mint", size: 560, top: "48%", left: "28%", duration: 26 },
+            { tone: "salmon", size: 520, bottom: "6%", right: "-120px", duration: 22, reverse: true },
+        ]}/>
+
+        <div class="intro-inner">
+            <RelocationNotice/>
+            <div class="reveal"><Quote>Naše centrum Vám nabízí komplexní ambulantní služby v oboru fyzioterapie a léčebné rehabilitace, pro všechny věkové kategorie.</Quote></div>
+            <div class="reveal"><InsuranceCompanies/></div>
+            <div class="reveal"><QuoteWithLine>Jsme ambulantní nestátní zdravotnické zařízení zaměřené na diagnostiku, terapii a prevenci všech problémů pohybového aparátu, tedy bolestí zad, kloubů a svalů, funkčních i degenerativních onemocnění, poúrazových a pooperačních stavů i problémů z oblasti neurologie, gynekologie, urologie či jiných internterních oborů.</QuoteWithLine></div>
         </div>
-
-        <div class="section">
-            <p class="highlight"><span class="icon-line"><ArrowRightIcon /> Vchod vlevo - hotelová recepce:</span></p>
-            <p>ordinace Bc. Kateřiny Štěpánkové</p>
-
-            <p class="highlight"><span class="icon-line"><ArrowRightIcon /> Vchod vpravo (wellness):</span></p>
-            <p>ostatní fyzioterapeuti, elektroléčba, magnetoterapie, laser</p>
-        </div>
-
-        <div class="section">
-            <p class="highlight"><span class="icon-line"><PhoneIcon /> Objednávání:</span></p>
-            <p>
-                PO–PÁ | 8:00–12:00<br>
-                SMS: <a href="tel:+420731205253">+420 731 205 253</a><br>
-                <span class="icon-line"><EnvelopeIcon /> <a href="mailto:fyzioterapiepodlipami@gmail.com">fyzioterapiepodlipami@gmail.com</a></span><br>
-            </p>
-        </div>
-
-        <p>
-            <span class="icon-line">Těšíme se na vás v nových prostorách <HeartIcon /></span><br>
-            <strong>Fyzioterapie pod lipami</strong>
-        </p>
     </div>
-    <Quote>Naše centrum Vám nabízí komplexní ambulantní služby v oboru fyzioterapie a léčebné rehabilitace, pro všechny věkové kategorie.</Quote>
-    <InsuranceCompanies/>
-    <Quote>Jsme ambulantní nestátní zdravotnické zařízení zaměřené na diagnostiku, terapii a prevenci všech problémů pohybového aparátu, tedy bolestí zad, kloubů a svalů, funkčních i degenerativních onemocnění, poúrazových a pooperačních stavů i problémů z oblasti neurologie, gynekologie, urologie či jiných internterních oborů.</Quote>
     <ServicesSection/>
     <ContactSection/>
 </main>
 <style>
-    .container {
-        max-width: 900px;
+    /* Region between hero and services: starts and ends on white so it melts into both */
+    #intro {
+        position: relative;
+        overflow: clip;
+        padding: 24px clamp(16px, 4vw, 48px) 72px; /* room for the last card's shadow inside the clip */
+        background: linear-gradient(180deg, white 0%, var(--background-lighter-blue) 14%, var(--background-lighter-blue) 86%, white 100%);
+    }
+    .intro-inner {
+        position: relative;
+        max-width: 1240px;
         margin: 0 auto;
-        padding: 20px;
-        font-size: 1.4em;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(72px, 8vw, 120px);
     }
-    a {
-        font-size: 1.1em;
+
+    @media (max-width: 850px) {
+        #intro {
+            padding: 16px 16px 64px;
+        }
     }
-    .highlight {
-        font-weight: bold;
+
+    @keyframes reveal {
+        from {
+            opacity: 0;
+            transform: translateY(28px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
-    .section {
-        margin-bottom: 8px;
-    }
-    .icon-line {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .icon-line :global(svg) {
-        flex-shrink: 0;
-        color: var(--green-dark);
-    }
-    .icon-line :global(svg[fill="currentColor"]) {
-        color: var(--green-light);
-    }
-    @media (max-width: 600px) {
-        .container {
-            font-size: 1em;
+    /* Progressive enhancement: blocks below the notice rise in as they scroll into view */
+    @supports (animation-timeline: view()) {
+        @media (prefers-reduced-motion: no-preference) {
+            .reveal {
+                animation: reveal linear both;
+                animation-timeline: view();
+                animation-range: entry 0% entry 35%;
+            }
         }
     }
 </style>

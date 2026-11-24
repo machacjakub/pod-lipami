@@ -1,182 +1,339 @@
 ---
+import ReservationButton from "../ReservationButton.astro"
+import SectionHeading from "../SectionHeading.astro"
+import BlobBackground from "../BlobBackground.astro"
+
+/*
+ * Price list for self-paying clients. Copy is kept exactly as supplied by the client
+ * (including mixed price formats); edit the wording here only after client review.
+ * A service has either one `price` or several `variants` (duration / package + price).
+ */
+interface Variant {
+    label: string;
+    price: string;
+}
+interface Service {
+    name: string;
+    note?: string;
+    price?: string;
+    variants?: Variant[];
+}
+
+const services: Service[] = [
+    {
+        name: "Komplexní individuální terapie",
+        note: "(fyzioterapie, fyzioterapie pro děti a miminka, podologie, viscerální terapie)",
+        variants: [
+            { label: "45 min", price: "1000 Kč" },
+            { label: "30 min", price: "700 Kč" },
+        ],
+    },
+    { name: "Terapie s prvky senzorické integrace", price: "1 000 Kč" },
+    { name: "Samostatná elektroléčba", price: "200 Kč" },
+    { name: "Kineziotaping", note: "(dle rozsahu)", price: "100 - 200 Kč" },
+    {
+        name: "Přístrojová lymfodrenáž",
+        variants: [
+            { label: "1 aplikace", price: "400 Kč" },
+            { label: "balíček 10 aplikací", price: "3 500 Kč" },
+        ],
+    },
+    {
+        name: "Vysokovýkonný laser",
+        note: "(pojišťovna Škoda proplácí 2 000 Kč)",
+        variants: [
+            { label: "do 15 min", price: "400 Kč" },
+            { label: "15 - 30 min", price: "600 Kč" },
+        ],
+    },
+];
 ---
-    <div class="wrapper">
-        <h1>Ceník fyzioterapie</h1>
-        <h2>Informace pro pacienty</h2>
-        <p>
-            K objednání je potřeba mít žádanku, kterou vyplní a potvrdí praktický nebo odborný lékař. Po vystavení žádanky by měl pacient do jednoho týdne kontaktovat fyzioterapeutické pracoviště. Lékař může pouze doporučit konkrétní zařízení, ale konečná volba závisí na pacientovi.
-        </p>
-        <p class="samoplatce"><b>Pro samoplátce</b> není nutná žádanka, terapii si hradi klient sám, viz ceník.</p>
-        <p class="samoplatce"><b>FYZIO POHOTOVOST </b>(termín do 48h) - 1500,-</p>
-        <h2 id="cenik-pro-samoplatce">Ceník pro samoplátce</h2>
-        <div class="flex-column">
-        <table>
-            <tr>
-                <td rowspan="2">
-                    <div class="with-description">
-                        <span>Komplexní individuální terapie</span>
-                        <span class="small-text">(fyzioterapie, fyzioterapie pro děti a miminka, podologie, viscerální terapie)</span>
-                    </div>
-                </td>
-                <td class="price">45 min</td>
-                <td class="price">1000 Kč</td>
-            </tr>
-            <tr>
-                <td class="price">30 min</td>
-                <td class="price">700 Kč</td>
-            </tr>
-            <tr>
-                <td>Terapie s prvky senzorické integrace</td>
-                <td class="price" colspan="2">1 000 Kč</td>
-            </tr>
-            <tr>
-                <td rowspan="2">Laseroterapie</td>
-                <td class="price">do 10 min</td>
-                <td class="price">180 Kč</td>
-            </tr>
-            <tr>
-                <td class="price">do 20 min</td>
-                <td class="price">250 Kč</td>
-            </tr>
-            <tr>
-                <td>Samostatná elektroléčba</td>
-                <td class="price" colspan="2">200 Kč</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="with-description">
-                        <span>Kineziotaping</span>
-                        <span class="small-text">(dle rozsahu)</span>
-                    </div>
-                </td>
-                <td colspan="2" class="price">100 - 200 Kč</td>
-            </tr>
-            <tr>
-                <td rowspan="2">Přístrojová lymfodrenáž</td>
-                <td class="price">1 aplikace</td>
-                <td class="price">400 Kč</td>
-            </tr>
-            <tr>
-                <td class="price">balíček 10 aplikací</td>
-                <td class="price">3 500 Kč</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="with-description">
-                        <span>Vysokovýkonný laser</span>
-                        <span class="small-text">(pojišťovna Škoda proplácí 2 000 Kč)</span>
-                    </div>
-                </td>
-                <td colspan="2" class="price">400 Kč</td>
-            </tr>
-        </table>
-        <a href="/#kontakt"><button client:only="react" id="reservation-button">Rezervovat termín</button></a>
+<section id="cenik">
+    <BlobBackground blobs={[
+        { tone: "teal", size: 640, top: "-120px", right: "-200px", duration: 18 },
+        { tone: "salmon", size: 560, top: "26%", left: "-240px", duration: 22, reverse: true },
+        { tone: "mint", size: 680, bottom: "4%", right: "-260px", duration: 26 },
+    ]}/>
+
+    <div class="inner">
+        <SectionHeading as="h1" animate>Ceník fyzioterapie</SectionHeading>
+
+        <section class="card info glass" aria-labelledby="informace-pro-pacienty">
+            <span class="accent-line" aria-hidden="true"/>
+            <h2 id="informace-pro-pacienty">Informace pro pacienty</h2>
+            <p class="lead">
+                K objednání je potřeba mít žádanku, kterou vyplní a potvrdí praktický nebo odborný lékař. Po vystavení žádanky by měl pacient do jednoho týdne kontaktovat fyzioterapeutické pracoviště. Lékař může pouze doporučit konkrétní zařízení, ale konečná volba závisí na pacientovi.
+            </p>
+            <div class="info-tiles">
+                <p class="tile"><b>Pro samoplátce</b> není nutná žádanka, terapii si hradi klient sám, viz ceník.</p>
+                <p class="tile tile-salmon"><b>FYZIO POHOTOVOST </b>(termín do 48h) <span class="nowrap">- <span class="tile-price">1500,-</span></span></p>
+            </div>
+        </section>
+
+        <section class="card prices glass" aria-labelledby="cenik-pro-samoplatce">
+            <span class="accent-line" aria-hidden="true"/>
+            <h2 id="cenik-pro-samoplatce">Ceník pro samoplátce</h2>
+            <ul class="price-list">
+                {services.map(service =>
+                    <li class:list={["price-item", { "has-variants": service.variants }]}>
+                        <div class="service">
+                            <span class="service-name">{service.name}</span>
+                            {service.note && <span class="service-note">{service.note}</span>}
+                        </div>
+                        {service.variants
+                            ? <dl class="variants">
+                                {service.variants.map(variant =>
+                                    <div class="variant">
+                                        <dt class="variant-label">{variant.label}</dt>
+                                        <dd class="price">{variant.price}</dd>
+                                    </div>
+                                )}
+                            </dl>
+                            : <p class="price price-single">{service.price}</p>
+                        }
+                    </li>
+                )}
+            </ul>
+        </section>
+
+        <div class="cta">
+            <ReservationButton/>
         </div>
     </div>
+</section>
 <style>
-    h1 {
-        text-align: center;
-        font-size: 36px;
-        color: var(--green-dark);
+    #cenik {
+        position: relative;
+        overflow: clip;
+        padding: 130px clamp(16px, 4vw, 48px) 120px;
+        background: linear-gradient(180deg, white 0%, var(--background-lighter-blue) 12%, var(--background-lighter-blue) 88%, white 100%);
+    }
+    .inner {
+        position: relative;
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .card {
+        padding: clamp(28px, 4vw, 48px);
+        border-radius: 36px;
+    }
+    .card + .card {
+        margin-top: 28px;
+    }
+    .card .accent-line {
+        margin-bottom: 18px;
     }
     h2 {
-        text-align: center;
-        font-size: 28px;
+        margin: 0 0 20px;
+        color: var(--green-dark);
+        font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.25rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+    }
+
+    /* Patient info */
+    .lead {
+        margin: 0;
+        color: var(--text-body);
+        font-size: 1.125rem;
+        line-height: 1.65;
+    }
+    .info-tiles {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 28px;
+    }
+    .tile {
+        margin: 0;
+        padding: 20px 24px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.58);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 16px 36px -26px rgba(5, 94, 105, 0.35);
+        color: var(--text-body);
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    .tile b {
         color: var(--green-dark);
     }
-    table {
-        margin: 0 auto;
-        font-size: 18px;
-        border-collapse: collapse;
-        background-color: var(--green-lighter);
-        table-layout: auto;
+    .tile-salmon {
+        background: linear-gradient(135deg, rgba(255, 216, 204, 0.7), rgba(255, 227, 220, 0.5));
     }
-    td {
-        border: solid white;
-        border-width: 3px 0 3px 0;
-        padding: 10px 30px 10px 10px;
-    }
-    td.price {
-        text-align: right;
-        border-width: 3px 0 3px 3px;
-        padding: 10px 10px 10px max(calc(5vw - 10px), 10px);
-        text-wrap: nowrap;
-    }
-    .wrapper {
-        min-height: 90vh;
-        margin: 100px auto;
-        max-width: 1000px;
-        width: 70vw;
-        display: flex;
-        flex-direction: column;
-        padding: 60px 6vw 120px;
-        background-image: linear-gradient(white, var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), var(--background-light-blue), white);
-        justify-content: center;
-    }
-    .flex-column {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-    }
-    p {
-        font-size: 18px;
-    }
-    .samoplatce {
-        font-size: 20px;
-    }
-    #cenik-pro-samoplatce {
-        margin-top: 50px;
-    }
-    button {
-        background-color: var(--salmon-light);
-        padding: 12px 20px;
-        font-family: Sofia Sans, sans-serif;
-        border: none;
-        border-radius: 18px;
-        font-size: 20px;
-        font-weight: 600;
-        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.34);
-        cursor: pointer;
+    .tile-salmon b {
         color: var(--salmon-darker);
     }
-    button:hover {
-        box-shadow: 0 0 10px white;
+    .nowrap {
+        white-space: nowrap;
     }
-    .with-description {
+    .tile-price {
+        white-space: nowrap;
+        font-weight: 700;
+        color: var(--salmon-darker);
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* Price list: service | variant | price, aligned across rows via subgrid */
+    .price-list {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        column-gap: 28px;
+        margin: 8px 0 0;
+        padding: 0;
+        list-style: none;
+    }
+    .price-item {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+        align-items: baseline;
+        padding: 20px 0;
+        border-top: 1px solid rgba(117, 181, 175, 0.3);
+    }
+    .price-item:first-child {
+        border-top: none;
+        padding-top: 8px;
+    }
+    .price-item:last-child {
+        padding-bottom: 0;
+    }
+    .service {
+        grid-column: 1;
         display: flex;
         flex-direction: column;
+        gap: 4px;
+        min-width: 0;
     }
-    .small-text {
-        font-size: 12px;
-        text-wrap: wrap;
-        color: #424242;
-        max-width: 240px;
+    .service-name {
+        color: var(--text-body);
+        font-size: 1.15rem;
+        font-weight: 700;
+        line-height: 1.35;
     }
-    @media (max-width: 800px) {
-        p {
-            line-height: 20px;
-            font-size: 14px;
+    .service-note {
+        max-width: 46ch;
+        color: var(--text-body);
+        opacity: 0.85;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    .variants {
+        grid-column: 2 / 4;
+        display: grid;
+        grid-template-columns: subgrid;
+        row-gap: 10px;
+        margin: 0;
+    }
+    .variant {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+        align-items: center;
+    }
+    .variant-label {
+        justify-self: end;
+        padding: 3px 14px;
+        border-radius: 999px;
+        background: rgba(240, 252, 253, 0.85);
+        border: 1px solid rgba(117, 181, 175, 0.35);
+        color: var(--text-body);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+    }
+    .price {
+        margin: 0;
+        justify-self: end;
+        color: var(--green-dark);
+        font-size: 1.2rem;
+        font-weight: 700;
+        line-height: 1.35;
+        white-space: nowrap;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+    }
+    .price-single {
+        grid-column: 2 / 4;
+    }
+
+    .cta {
+        display: flex;
+        justify-content: center;
+        margin-top: clamp(36px, 4vw, 52px);
+    }
+
+    @media (max-width: 1150px) {
+        #cenik {
+            padding-top: 120px;
         }
-        .samoplatce {
-            font-size: 16px;
+    }
+    @media (max-width: 850px) {
+        #cenik {
+            padding: 110px 16px 80px;
         }
-        h2 {
-            font-size: 24px;
-            margin: 20px 4vw;
+        .card {
+            border-radius: 28px;
         }
-        .wrapper {
-            margin: 70px max(0px, calc(26vw - 110px));
-            width: auto;
-            padding: 50px 8vw 100px;
+        .card + .card {
+            margin-top: 20px;
         }
-        td {
-            font-size: 14px;
+    }
+    @media (max-width: 600px) {
+        .card {
+            padding: 26px 18px;
         }
-        button {
-            font-size: 18px;
-            padding: 10px 16px;
-            border-radius: 14px;
+        .lead {
+            font-size: 1.05rem;
+        }
+        .info-tiles {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 12px;
+            margin-top: 22px;
+        }
+        .tile {
+            padding: 18px 20px;
+            border-radius: 20px;
+            font-size: 1.05rem;
+        }
+
+        /* Name and single price share a row; variants drop below the name */
+        .price-list {
+            grid-template-columns: minmax(0, 1fr) auto;
+            column-gap: 16px;
+        }
+        .price-item {
+            padding: 16px 0;
+            row-gap: 10px;
+        }
+        .service-name {
+            font-size: 1.08rem;
+        }
+        .has-variants .service {
+            grid-column: 1 / -1;
+        }
+        .price-single {
+            grid-column: 2;
+        }
+        .variants {
+            grid-column: 1 / -1;
+            row-gap: 8px;
+        }
+        .variant-label {
+            justify-self: start;
+        }
+        .price {
+            font-size: 1.1rem;
+        }
+    }
+    @media (max-width: 400px) {
+        .card {
+            padding: 24px 14px;
+        }
+        .tile {
+            padding: 16px;
         }
     }
 </style>
