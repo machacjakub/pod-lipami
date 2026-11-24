@@ -2,6 +2,7 @@
   "name": "pod-lipami",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.7.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -20,5 +21,11 @@
   "devDependencies": {
     "@types/react": "^19",
     "@types/react-dom": "^19"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }

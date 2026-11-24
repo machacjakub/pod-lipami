@@ -37,11 +37,6 @@ import BlobBackground from "../BlobBackground.astro";
                     <p class="time">7:00 - 15:00</p>
                     <p class="note">Odpolední termíny (po 15h) dle objednání</p>
                 </div>
-                <div class="hours-tile">
-                    <h3>Objednávání</h3>
-                    <b>Pondělí, Středa, Pátek</b>
-                    <p class="time">8:00 - 12:00</p>
-                </div>
             </div>
         </div>
 
@@ -231,9 +226,6 @@ import BlobBackground from "../BlobBackground.astro";
     }
 
     .hours {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
         margin-top: 32px;
     }
     .hours-tile {
@@ -415,9 +407,6 @@ import BlobBackground from "../BlobBackground.astro";
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 24px;
         }
-        .hours {
-            grid-template-columns: minmax(0, 1fr);
-        }
     }
     @media (max-width: 850px) {
         #kontakt {
@@ -432,17 +421,11 @@ import BlobBackground from "../BlobBackground.astro";
         .contact-form {
             border-radius: 28px;
         }
-        .hours {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
     }
     @media (max-width: 600px) {
         .contact-info,
         .contact-form {
             padding: 28px 22px;
-        }
-        .hours {
-            grid-template-columns: minmax(0, 1fr);
         }
         .info-item {
             font-size: 1rem;

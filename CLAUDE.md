@@ -8,12 +8,13 @@ Static marketing website for "Fyzioterapie Pod Lipami" — a Czech physiotherapy
 
 ## Commands
 
-Uses Yarn (PnP mode):
+Uses pnpm (version pinned in `package.json` `packageManager`):
 
 ```bash
-yarn dev       # Start dev server
-yarn build     # Build to ./dist/
-yarn preview   # Preview production build
+pnpm install   # Install dependencies
+pnpm dev       # Start dev server
+pnpm build     # Build to ./dist/
+pnpm preview   # Preview production build
 ```
 
 No linting or test commands exist in this project.
